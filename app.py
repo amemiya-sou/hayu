@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request
 import cv2
-
-# OpenCL を無効化して libGL.so.1 エラーを回避
-cv2.ocl.setUseOpenCL(False)
 import numpy as np
 import pytesseract
 from PIL import Image, ImageFilter
 import Levenshtein
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
+
+# OpenCL を無効化して libGL.so.1 エラーを回避
+cv2.ocl.setUseOpenCL(False)
 
 # 事前に用意したフルーツの画像
 fruit_images = {
@@ -1015,6 +1016,9 @@ def preprocess_image(img, percent_boxes):
     # 画像を拡大
     img = img.resize((width * 2, height * 2), Image.BICUBIC)
 
+    # 画像をグレースケールに変換
+    img_gray = img.convert("L")
+
     for i, percent_box in enumerate(percent_boxes):
         # パーセントで指定された範囲を計算
         left = int(width * percent_box[0] / 100 * 2)
@@ -1023,10 +1027,9 @@ def preprocess_image(img, percent_boxes):
         bottom = int(height * percent_box[3] / 100 * 2)
 
         # 範囲指定の部分をクロップ
-        cropped_img = img.crop((left, top, right, bottom))
+        cropped_img = img_gray.crop((left, top, right, bottom))
 
         # 二値化
-        cropped_img = cropped_img.convert("L")
         threshold = 120
         cropped_img = cropped_img.point(lambda p: p < threshold and 255)
 
@@ -1035,37 +1038,9 @@ def preprocess_image(img, percent_boxes):
 
     return processed_images
 
-# 類似性スコアの計算
-def similarity_score(str1, str2):
-    levenshtein_distance = Levenshtein.distance(str1, str2)
-    
-    common_prefix = os.path.commonprefix([str1, str2])
-    common_suffix = os.path.commonprefix([str1[::-1], str2[::-1]])[::-1]
-    partial_match_length = len(common_prefix) + len(common_suffix)
-    partial_match_score = partial_match_length / max(len(str1), len(str2))
-
-    similarity_score = 0.7 * (1 - levenshtein_distance / max(len(str1), len(str2))) + 0.3 * partial_match_score
-
-    return similarity_score
-
-# 画像比較
-def compare_images(img1, img2, roi_percent):
-    # アップロードされた画像の指定されたパーセント範囲を切り取り
-    height, width, _ = img2.shape
-    roi_start = (int(width * roi_percent[0] / 100), int(height * roi_percent[1] / 100))
-    roi_end = (int(width * roi_percent[2] / 100), int(height * roi_percent[3] / 100))
-    uploaded_roi = img2[roi_start[1]:roi_end[1], roi_start[0]:roi_end[0]]
-
-    # 画像サイズをアップロードされた画像に合わせてリサイズ
-    img1_resized = cv2.resize(img1, (uploaded_roi.shape[1], uploaded_roi.shape[0]))
-
-    # 差分を計算
-    difference = cv2.absdiff(img1_resized, uploaded_roi)
-    _, threshold_diff = cv2.threshold(difference, 30, 255, cv2.THRESH_BINARY)
-
-    # 類似度を計算
-    similarity = np.sum(threshold_diff == 0) / np.prod(threshold_diff.shape)
-    return similarity
+# マルチスレッド/プロセスの使用
+def process_image(processed_img):
+    return perform_ocr(processed_img)
 
 # Flaskアプリケーションのルーティング
 @app.route('/')
@@ -1104,8 +1079,9 @@ def upload_file():
         # 画像の前処理（パーセントで範囲指定および二値化、ノイズ除去）
         processed_images = preprocess_image(img, percent_boxes)
 
-        # OCRの実行
-        texts = [perform_ocr(processed_img) for processed_img in processed_images]
+        # OCRの実行（マルチスレッド/プロセスの使用）
+        with ThreadPoolExecutor() as executor:
+            texts = list(executor.map(process_image, processed_images))
 
         # 最も近い言葉を検索して表示
         closest_words = []
