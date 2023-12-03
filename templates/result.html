@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダブル構築まとめ屋さん。</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
+</head>
+
+<body>
+    <div id="header">
+        <h1><a href="pagetop.php" class="title">構築まとめ屋さん。</a></h1>
+        <form id="nav-searchbar" action="search" method="get">
+            <input type="text" id="searchbar-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で記事検索">
+            <button type="submit" id="searchbar-icon"><i class="fas fa-search fa-fw"></i></button>
+        </form>
+    </div>
+    <div class="package">
+        <h2>構築収集フォーム</h2>
+        <div id="form">
+            <p>URLだけでも大丈夫ですが、可能な限り入力していただけると助かります。</p>
+            <p>レンタル画像からポケモン名と持ち物を自動で読み取れます。精度は低いため適宜調整してください。</p>
+            <p>
+            <form method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
+            </form>
+            </p>
+            <form action="save_to_database.php" method="post">
+                <label for="url">記事URL：</label>
+                <input type="text" id="url" name="url" autocomplete="off"><br>
+                <!--
+                    <label for="title">記事タイトル：</label>
+                    <input type="text" id="title" name="title"><br>
+                    -->
+                <label for="name">制作者名：</label>
+                <input type="text" id="name" name="name" autocomplete="off"><br>
+                <label for="name">最終順位：</label>
+                <input type="number" id="rank" name="rank" autocomplete="off">
+                <label>位</label><br>
+                <label for="pokemon1">ポケモン1：</label>
+                <input type="text" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[0] }}"><br>
+
+                <label style="visibility: hidden;">アイテム1：</label>
+                <input type="text" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[1] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ1：</label>
+                <input type="text" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message1 }}"><br>
+
+                <label for="pokemon2">ポケモン2：</label>
+                <input type="text" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[2] }}"><br>
+
+                <label style="visibility: hidden;">アイテム2：</label>
+                <input type="text" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[3] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ2：</label>
+                <input type="text" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message2 }}"><br>
+
+                <label for="pokemon3">ポケモン3：</label>
+                <input type="text" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[4] }}"><br>
+
+                <label style="visibility: hidden;">アイテム3：</label>
+                <input type="text" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[5] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ3：</label>
+                <input type="text" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message3 }}"><br>
+
+                <label for="pokemon4">ポケモン4：</label>
+                <input type="text" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[6] }}"><br>
+
+                <label style="visibility: hidden;">アイテム4：</label>
+                <input type="text" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[7] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ4：</label>
+                <input type="text" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message4 }}"><br>
+
+                <label for="pokemon5">ポケモン5：</label>
+                <input type="text" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[8] }}"><br>
+
+                <label style="visibility: hidden;">アイテム5：</label>
+                <input type="text" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[9] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ5：</label>
+                <input type="text" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message5 }}"><br>
+
+                <label for="pokemon6">ポケモン6：</label>
+                <input type="text" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[10] }}"><br>
+
+                <label style="visibility: hidden;">アイテム6：</label>
+                <input type="text" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
+                    value="{{ closest_words[11] }}"><br>
+
+                <label style="visibility: hidden;">テラスタ6：</label>
+                <input type="text" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
+                    value="{{ message6 }}"><br>
+
+                <input type="submit" value="送信" class="botan">
+
+            </form>
+        </div>
+    </div>
+    <p>{{ texts[9] }}</p>
+    <script>
+        document.getElementById('file-input').addEventListener('change', function () {
+            document.getElementById('upload-form').submit();
+        });
+    </script>
+</body>
+
+</html>

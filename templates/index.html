@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダブル構築まとめ屋さん。</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
+</head>
+
+<body>
+    <div id="header">
+        <h1><a href="pagetop.php" class="title">構築まとめ屋さん。</a></h1>
+        <form id="nav-searchbar" action="search" method="get">
+            <input type="text" id="searchbar-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で記事検索">
+            <button type="submit" id="searchbar-icon"><i class="fas fa-search fa-fw"></i></button>
+        </form>
+    </div>
+    <div class="package">
+        <h2>構築収集フォーム</h2>
+        <div id="form">
+            <p>必須項目はURLのみですが、可能な限り入力していただけると助かります。</p>
+
+            <p>レンタル画像からポケモン名と持ち物を自動で読み取れます。精度は低いため適宜調整してください。</p>
+            <p>
+            <form method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
+            </form>
+            </p>
+            <form action="save_to_database.php" method="post">
+                <label for="url">記事URL：</label>
+                <input type="text" id="url" name="url" autocomplete="off"><br>
+                <!--
+                <label for="title">記事タイトル：</label>
+                <input type="text" id="title" name="title"><br>
+                -->
+                <label for="name">制作者名：</label>
+                <input type="text" id="name" name="name" autocomplete="off"><br>
+                <label for="name">最終順位：</label>
+                <input type="number" id="rank" name="rank" autocomplete="off">
+                <label>位</label><br>
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        document.write(`
+                        <label for="pokemon${i}">ポケモン${i}：</label>
+                        <input type="text" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
+                        <label style="visibility: hidden;">アイテム${i}：</label>
+                        <input type="text" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
+                        <label style="visibility: hidden;">テラスタ${i}：</label>
+                        <input type="text" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
+                      `);
+                    }
+                </script>
+                <input type="submit" value="送信" class="botan">
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('file-input').addEventListener('change', function () {
+            document.getElementById('upload-form').submit();
+        });
+    </script>
+</body>
+
+</html>

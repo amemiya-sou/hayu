@@ -1,0 +1,171 @@
+body {
+    background-image: url('img/background.png');
+    background-size: 200%;
+}
+
+/*aタグの見た目*/
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.url:hover {
+    text-decoration: underline;
+}
+
+/*ヘッダー用*/
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/*簡単検索*/
+#searchbar-input {
+    width: 167px;
+    height: 30px;
+    font-size: 14px;
+    padding-left: 3px;
+}
+
+#searchbar-icon {
+    height: 35px;
+    width: 35px;
+    font-size: 15px;
+    -webkit-appearance: none;
+}
+
+/*項目ごとにまとめる用*/
+.package {
+    border: 2px solid #005eac;
+    margin: 5px;
+    background-color: #ffffff;
+    max-width: 500px;
+    border-radius: 0px;
+}
+
+/*各項目名*/
+h2 {
+    background-color: #005eac;
+    color: #ffffff;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 5px;
+}
+
+#riri {
+    padding: 0px 5px;
+    margin-top: 0px;
+    margin-bottom: -1px;
+}
+
+#hoho {
+    padding-left: 0;
+}
+
+/*containerを並べる*/
+.set {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*アイテムとポケモンをまとめる*/
+.container {
+    position: relative;
+    flex-grow: 0;
+    margin: -10px 0px 10px -5px;
+}
+
+/*ポケモンの画像*/
+.pokemon {
+    width: 55px;
+    height: auto;
+}
+
+/*アイテムの画像*/
+.item {
+    width: 25px;
+    height: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 55%;
+}
+
+/*フォームページ用*/
+#form {
+    padding: 10px;
+}
+
+/*桜衣乃*/
+#ino {
+    margin: 10px;
+}
+
+/*iPhone用*/
+#botan {
+    -webkit-appearance: none;
+}
+
+.text-links {
+    margin: 5px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.text-links li {
+    border-bottom: 1px black dashed;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.text-links li:last-child {
+    border-bottom: 0px;
+    margin-bottom: 0;
+}
+
+/*containerを並べる*/
+.container_2 {
+    position: relative;
+    justify-content: flex-start;
+    flex-grow: 0;
+    margin-bottom: -5px;
+}
+
+/*ポケモンの画像*/
+.pokemon_2 {
+    width: 55px;
+    height: auto;
+    margin-right: -10px;
+    margin-top: -8px;
+}
+
+.debug {
+    display: none;
+}
+
+#rank {
+    width: 75px;
+    text-align: right;
+    padding-right: 3px;
+}
+
+#rank::-webkit-inner-spin-button,
+#rank-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+#load {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+
+}
+
+img {
+    vertical-align: middle;
+}
