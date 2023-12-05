@@ -315,11 +315,11 @@ $(function () {
                 "ヨノワール",
                 "ユキメノコ",
                 "ロトム",
-                "ヒートロトム",
-                "ウォッシュロトム",
-                "フロストロトム",
-                "スピンロトム",
-                "カットロトム",
+                "ロトム(みず)",
+                "ロトム(ほのお)",
+                "ロトム(くさ)",
+                "ロトム(ひこう)",
+                "ロトム(こおり)",
                 "ユクシー",
                 "エムリット",
                 "アグノム",
@@ -686,8 +686,10 @@ $(function () {
                 "オーガポン",
                 "オーガポン(いど)",
                 "オーガポン(かまど)",
-                "オーガポン(いしずえ)"
+                "オーガポン(いしずえ)",
+                "シャリタツ"
             ];
+            var form = {'ウォッシュトロトム':'ロトム(みず)','ヒートロトム':'ロトム(ほのお)','カットロトム':'ロトム(くさ)','スピンロトム':'ロトム(ひこう)','フロストロトム':'ロトム(こおり)',};
             var term = hanToZen(hiraganaToKatakana(request.term.toUpperCase()));
 
             for (i = 0; i < poke_kata.length; i++) {
@@ -701,13 +703,20 @@ $(function () {
                 }
             }
 
+            for (key in form) {
+                //前方一致
+                if (key.indexOf(term) == 0) {
+                    list.push(form[key]);
+                }
+            }
+
             list = list.concat(list_bubun);
             list = list.filter(function (x, i, self) { return self.indexOf(x) === i; });
             response(list.slice(0, 4));
         }
     }
     let autoCompleteTargetsPokemon = [$('#nav-searchbar-input'), $('#search-pokemon0'), $('#search-pokemon1'), $('#search-pokemon2'), $('#search-pokemon3'), $('#search-pokemon4'), $('#search-pokemon5'), $('#search-pokemon6'), $('#search-pokemon7'), $('#search-pokemon8'), $('#search-pokemon9'), $('#search-pokemon10'), $('#search-pokemon11'), $('#pokemon0'), $('#pokemon1'), $('#pokemon2'), $('#pokemon3'), $('#pokemon4'), $('#pokemon5'), $('#pokemon6'), $('#poke1'), $('#poke2'), $('#poke3')];
-   
+
     for (i = 0; i < autoCompleteTargetsPokemon.length; i++) {
         autoCompleteTargetsPokemon[i].autocomplete({
             source: source(),
