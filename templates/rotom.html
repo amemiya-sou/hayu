@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon Selector</title>
+  <style>
+    #suggestions {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      max-height: 120px; /* 固定された高さ */
+      overflow-y: auto;
+    }
+
+    .suggestion {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .suggestion:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+<input type="text" id="pokemon" onfocus="showPokemonSuggestions()">
+<div id="suggestions" style="display:none;"></div>
+
+<script>
+function showPokemonSuggestions() {
+  // 入力フィールドの値を取得
+  var inputValue = document.getElementById("pokemon").value;
+
+  // 条件に基づいて候補を生成
+  if (inputValue === "ロトム") {
+    var suggestions = ["ロトム", "ロトム(ほのお)", "ロトム(みず)"];
+
+    // 候補を表示
+    var suggestionsContainer = document.getElementById("suggestions");
+    suggestionsContainer.innerHTML = "";
+
+    for (var i = 0; i < suggestions.length; i++) {
+      var suggestion = suggestions[i];
+      var suggestionElement = document.createElement("div");
+      suggestionElement.className = "suggestion";
+      suggestionElement.textContent = suggestion;
+      suggestionElement.onclick = function() {
+        // クリックされた候補を入力フィールドに設定
+        document.getElementById("pokemon").value = this.textContent;
+        // 候補リストをクリア
+        suggestionsContainer.innerHTML = "";
+        // 非表示にする
+        suggestionsContainer.style.display = "none";
+      };
+      suggestionsContainer.appendChild(suggestionElement);
+    }
+
+    // 候補が存在する場合、表示する
+    if (suggestions.length > 0) {
+      suggestionsContainer.style.display = "block";
+    } else {
+      suggestionsContainer.style.display = "none";
+    }
+  } else {
+    // 入力が条件に合わない場合、非表示にする
+    document.getElementById("suggestions").style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

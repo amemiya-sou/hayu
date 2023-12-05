@@ -51,11 +51,11 @@
                     for (let i = 1; i <= 6; i++) {
                         document.write(`
                         <label for="pokemon${i}">ポケモン${i}：</label>
-                        <input type="text" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
+                        <input type="search" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
                         <label style="visibility: hidden;">アイテム${i}：</label>
-                        <input type="text" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
+                        <input type="search" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
                         <label style="visibility: hidden;">テラスタ${i}：</label>
-                        <input type="text" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
+                        <input type="search" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
                       `);
                     }
                 </script>

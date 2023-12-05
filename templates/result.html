@@ -14,6 +14,35 @@
     <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
+    <script src="{{ url_for('static', filename='autocomplete_form.js') }}"></script>
+    <style>
+        .red-background {
+            background-color: #fa8072;
+        }
+
+        .white-background {
+            background-color: #ffffff;
+        }
+    </style>
+    <style>
+        .suggestions {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            max-height: 1200000px;
+            overflow-y: auto;
+            margin-left: 13%;
+        }
+
+        .suggestion {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,75 +76,87 @@
                 <input type="number" id="rank" name="rank" autocomplete="off">
                 <label>位</label><br>
                 <label for="pokemon1">ポケモン1：</label>
-                <input type="text" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[0] }}"><br>
+                <input type="search" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
+                    onfocus="showPokemonSuggestions('pokemon1')">
+                <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム1：</label>
-                <input type="text" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[1] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ1：</label>
-                <input type="text" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
                     value="{{ message1 }}"><br>
 
                 <label for="pokemon2">ポケモン2：</label>
-                <input type="text" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[2] }}"><br>
+                <input type="search" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[2] }}" oninput="changeColor('pokemon2')"
+                    onfocus="showPokemonSuggestions('pokemon2')">
+                <div id="pokemon2suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム2：</label>
-                <input type="text" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[3] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ2：</label>
-                <input type="text" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
                     value="{{ message2 }}"><br>
 
                 <label for="pokemon3">ポケモン3：</label>
-                <input type="text" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[4] }}"><br>
+                <input type="search" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[4] }}" oninput="changeColor('pokemon3')"
+                    onfocus="showPokemonSuggestions('pokemon3')">
+                <div id="pokemon3suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム3：</label>
-                <input type="text" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[5] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ3：</label>
-                <input type="text" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
                     value="{{ message3 }}"><br>
 
                 <label for="pokemon4">ポケモン4：</label>
-                <input type="text" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[6] }}"><br>
+                <input type="search" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[6] }}" oninput="changeColor('pokemon4')"
+                    onfocus="showPokemonSuggestions('pokemon4')">
+                <div id="pokemon4suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム4：</label>
-                <input type="text" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[7] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ4：</label>
-                <input type="text" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
                     value="{{ message4 }}"><br>
 
                 <label for="pokemon5">ポケモン5：</label>
-                <input type="text" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[8] }}"><br>
+                <input type="search" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[8] }}" oninput="changeColor('pokemon5')"
+                    onfocus="showPokemonSuggestions('pokemon5')">
+                <div id="pokemon5suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム5：</label>
-                <input type="text" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[9] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ5：</label>
-                <input type="text" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
                     value="{{ message5 }}"><br>
 
                 <label for="pokemon6">ポケモン6：</label>
-                <input type="text" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
-                    value="{{ closest_words[10] }}"><br>
+                <input type="search" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
+                    value="{{ closest_words[10] }}" oninput="changeColor('pokemon6')"
+                    onfocus="showPokemonSuggestions('pokemon6')">
+                <div id="pokemon6suggestions" class="suggestions" style="display:none;"></div><br>
 
                 <label style="visibility: hidden;">アイテム6：</label>
-                <input type="text" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
+                <input type="search" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
                     value="{{ closest_words[11] }}"><br>
 
                 <label style="visibility: hidden;">テラスタ6：</label>
-                <input type="text" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
+                <input type="search" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
                     value="{{ message6 }}"><br>
 
                 <input type="submit" value="送信" class="botan">
@@ -123,12 +164,226 @@
             </form>
         </div>
     </div>
-    <p>{{ texts[9] }}</p>
     <script>
         document.getElementById('file-input').addEventListener('change', function () {
             document.getElementById('upload-form').submit();
         });
+
+        function changeColor(elementId) {
+            var inputValue = document.getElementById(elementId).value;
+            var inputElement = document.getElementById(elementId);
+
+            if (inputValue !== "ロトム" && inputValue !== "キュウコン") {
+                inputElement.classList.remove("red-background");
+            }
+        }
+
+        window.onload = function () {
+            for (var i = 1; i <= 6; i++) {
+                checkInitialValue('pokemon' + i);
+            }
+        };
+
+        function checkInitialValue(elementId) {
+            var inputValue = document.getElementById(elementId).value;
+            var inputElement = document.getElementById(elementId);
+
+            if (inputValue === "ロトム" ||
+                inputValue === "ライチュウ" ||
+                inputValue === "サンド" ||
+                inputValue === "サンドパン" ||
+                inputValue === "ロコン" ||
+                inputValue === "キュウコン" ||
+                inputValue === "ディグダ" ||
+                inputValue === "ダグトリオ" ||
+                inputValue === "ニャース" ||
+                inputValue === "ペルシアン" ||
+                inputValue === "ガーディ" ||
+                inputValue === "ウインディ" ||
+                inputValue === "イシツブテ" ||
+                inputValue === "ゴローン" ||
+                inputValue === "ゴローニャ" ||
+                inputValue === "ヤドン" ||
+                inputValue === "ヤドラン" ||
+                inputValue === "ベトベター" ||
+                inputValue === "ベトベトン" ||
+                inputValue === "ビリリダマ" ||
+                inputValue === "マルマイン" ||
+                inputValue === "マタドガス" ||
+                inputValue === "ケンタロス" ||
+                inputValue === "フリーザー" ||
+                inputValue === "サンダー" ||
+                inputValue === "ファイヤー" ||
+                inputValue === "バクフーン" ||
+                inputValue === "ウパー" ||
+                inputValue === "ヤドキング" ||
+                inputValue === "ハリーセン" ||
+                inputValue === "ニューラ" ||
+                inputValue === "ダイケンキ" ||
+                inputValue === "ドレディア" ||
+                inputValue === "ゾロア" ||
+                inputValue === "ゾロアーク" ||
+                inputValue === "ウォーグル" ||
+                inputValue === "トルネロス" ||
+                inputValue === "ボルトロス" ||
+                inputValue === "ランドロス" ||
+                inputValue === "ヌメイル" ||
+                inputValue === "ヌメルゴン" ||
+                inputValue === "クレベース" ||
+                inputValue === "ジュナイパー" ||
+                inputValue === "オドリドリ" ||
+                inputValue === "ルガルガン" ||
+                inputValue === "ストリンダー" ||
+                inputValue === "イエッサン" ||
+                inputValue === "イダイトウ" ||
+                inputValue === "ラブトロス" ||
+                inputValue === "パフュートン" ||
+                inputValue === "コレクレー" ||
+                inputValue === "オーガポン" ||
+                inputValue === "ウーラオス") {
+                inputElement.classList.add("red-background");
+            }
+        }
+
+        function showPokemonSuggestions(elementId) {
+            var inputValue = document.getElementById(elementId).value;
+            var suggestions = [];
+
+            // 各ポケモンに対する候補を作成
+            if (inputValue === "ロトム") {
+                suggestions = ["ロトム", "ロトム(ほのお)", "ロトム(みず)", "ロトム(くさ)", "ロトム(ひこう)", "ロトム(こおり)"];
+            } else if (inputValue === "ライチュウ") {
+                suggestions = ["ライチュウ", "ライチュウ(アローラ)"];
+            } else if (inputValue === "サンド") {
+                suggestions = ["サンド", "サンド(アローラ)"];
+            } else if (inputValue === "サンドパン") {
+                suggestions = ["サンドパン", "サンドパン(アローラ)"];
+            } else if (inputValue === "ロコン") {
+                suggestions = ["ロコン", "ロコン(アローラ)"];
+            } else if (inputValue === "キュウコン") {
+                suggestions = ["キュウコン", "キュウコン(アローラ)"];
+            } else if (inputValue === "ディグダ") {
+                suggestions = ["ディグダ", "ディグダ(アローラ)"];
+            } else if (inputValue === "ダグトリオ") {
+                suggestions = ["ダグトリオ", "ダグトリオ(アローラ)"];
+            } else if (inputValue === "ニャース") {
+                suggestions = ["ニャース", "ニャース(アローラ)", "ニャース(ガラル)"];
+            } else if (inputValue === "ペルシアン") {
+                suggestions = ["ペルシアン", "ペルシアン(アローラ)"];
+            } else if (inputValue === "ガーディ") {
+                suggestions = ["ガーディ", "ガーディ(ヒスイ)"];
+            } else if (inputValue === "ウインディ") {
+                suggestions = ["ウインディ", "ウインディ(ヒスイ)"];
+            } else if (inputValue === "イシツブテ") {
+                suggestions = ["イシツブテ", "イシツブテ(アローラ)"];
+            } else if (inputValue === "ゴローン") {
+                suggestions = ["ゴローン", "ゴローン(アローラ)"];
+            } else if (inputValue === "ゴローニャ") {
+                suggestions = ["ゴローニャ", "ゴローニャ(アローラ)"];
+            } else if (inputValue === "ヤドン") {
+                suggestions = ["ヤドン", "ヤドン(ガラル)"];
+            } else if (inputValue === "ヤドラン") {
+                suggestions = ["ヤドラン", "ヤドラン(ガラル)"];
+            } else if (inputValue === "ベトベター") {
+                suggestions = ["ベトベター", "ベトベター(アローラ)"];
+            } else if (inputValue === "ベトベトン") {
+                suggestions = ["ベトベトン", "ベトベトン(アローラ)"];
+            } else if (inputValue === "ビリリダマ") {
+                suggestions = ["ビリリダマ", "ビリリダマ(ヒスイ)"];
+            } else if (inputValue === "マルマイン") {
+                suggestions = ["マルマイン", "マルマイン(ヒスイ)"];
+            } else if (inputValue === "マタドガス") {
+                suggestions = ["マタドガス", "マタドガス(ガラル)"];
+            } else if (inputValue === "ケンタロス") {
+                suggestions = ["ケンタロス", "ケンタロス(パルデア単)", "ケンタロス(パルデア炎)", "ケンタロス(パルデア水)"];
+            } else if (inputValue === "フリーザー") {
+                suggestions = ["フリーザー", "フリーザー(ガラル)"];
+            } else if (inputValue === "サンダー") {
+                suggestions = ["サンダー", "サンダー(ガラル)"];
+            } else if (inputValue === "ファイヤー") {
+                suggestions = ["ファイヤー", "ファイヤー(ガラル)"];
+            } else if (inputValue === "バクフーン") {
+                suggestions = ["バクフーン", "バクフーン(ヒスイ)"];
+            } else if (inputValue === "ウパー") {
+                suggestions = ["ウパー", "ウパー(パルデア)"];
+            } else if (inputValue === "ヤドキング") {
+                suggestions = ["ヤドキング", "ヤドキング(ガラル)"];
+            } else if (inputValue === "ハリーセン") {
+                suggestions = ["ハリーセン", "ハリーセン(ヒスイ)"];
+            } else if (inputValue === "ニューラ") {
+                suggestions = ["ニューラ", "ニューラ(ヒスイ)"];
+            } else if (inputValue === "ダイケンキ") {
+                suggestions = ["ダイケンキ", "ダイケンキ(ヒスイ)"];
+            } else if (inputValue === "ドレディア") {
+                suggestions = ["ドレディア", "ドレディア(ヒスイ)"];
+            } else if (inputValue === "ゾロア") {
+                suggestions = ["ゾロア", "ゾロア(ヒスイ)"];
+            } else if (inputValue === "ゾロアーク") {
+                suggestions = ["ゾロアーク", "ゾロアーク(ヒスイ)"];
+            } else if (inputValue === "ウォーグル") {
+                suggestions = ["ウォーグル", "ウォーグル(ヒスイ)"];
+            } else if (inputValue === "トルネロス") {
+                suggestions = ["トルネロス(化身)", "トルネロス(霊獣)"];
+            } else if (inputValue === "ボルトロス") {
+                suggestions = ["ボルトロス(化身)", "ボルトロス(霊獣)"];
+            } else if (inputValue === "ランドロス") {
+                suggestions = ["ランドロス(化身)", "ランドロス(霊獣)"];
+            } else if (inputValue === "ヌメイル") {
+                suggestions = ["ヌメイル", "ヌメイル(ヒスイ)"];
+            } else if (inputValue === "ヌメルゴン") {
+                suggestions = ["ヌメルゴン", "ヌメルゴン(ヒスイ)"];
+            } else if (inputValue === "クレベース") {
+                suggestions = ["クレベース", "クレベース(ヒスイ)"];
+            } else if (inputValue === "ジュナイパー") {
+                suggestions = ["ジュナイパー", "ジュナイパー(ヒスイ)"];
+            } else if (inputValue === "オドリドリ") {
+                suggestions = ["オドリドリ(めらめら)", "オドリドリ(ふらふら)", "オドリドリ(まいまい)", "オドリドリ(ぱちぱち)"];
+            } else if (inputValue === "ルガルガン") {
+                suggestions = ["ルガルガン(まひる)", "ルガルガン(まよなか)", "ルガルガン(たそがれ)"];
+            } else if (inputValue === "ストリンダー") {
+                suggestions = ["ストリンダー(ハイ)", "ストリンダー(ハイ)"];
+            } else if (inputValue === "イエッサン") {
+                suggestions = ["イエッサン♂", "イエッサン♀"];
+            } else if (inputValue === "イダイトウ") {
+                suggestions = ["イダイトウ♂", "イダイトウ♀"];
+            } else if (inputValue === "ラブトロス") {
+                suggestions = ["ラブトロス(化身)", "ラブトロス(霊獣)"];
+            } else if (inputValue === "パフュートン") {
+                suggestions = ["パフュートン♂", "パフュートン♀"];
+            } else if (inputValue === "コレクレー") {
+                suggestions = ["コレクレー(はこ)", "コレクレー(とほ)"];
+            } else if (inputValue === "オーガポン") {
+                suggestions = ["オーガポン", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
+            } else if (inputValue === "ウーラオス") {
+                suggestions = ["ウーラオス(いちげき)", "ウーラオス(れんげき)"];
+            }
+
+            var suggestionsContainer = document.getElementById(elementId + "suggestions");
+            suggestionsContainer.innerHTML = "";
+
+            for (var i = 0; i < suggestions.length; i++) {
+                var suggestion = suggestions[i];
+                var suggestionElement = document.createElement("div");
+                suggestionElement.className = "suggestion";
+                suggestionElement.textContent = suggestion;
+                suggestionElement.onclick = function () {
+                    document.getElementById(elementId).classList.replace("red-background", "sakuraino");
+                    document.getElementById(elementId).value = this.textContent;
+                    suggestionsContainer.innerHTML = "";
+                    suggestionsContainer.style.display = "none";
+                };
+                suggestionsContainer.appendChild(suggestionElement);
+            }
+
+            if (suggestions.length > 0) {
+                suggestionsContainer.style.display = "block";
+            } else {
+                suggestionsContainer.style.display = "none";
+            }
+        }
     </script>
+    <div>{{ texts[0] }}</div>
+
 </body>
 
 </html>
