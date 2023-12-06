@@ -73,6 +73,7 @@ function checkInitialValue(elementId) {
         inputValue === "パフュートン" ||
         inputValue === "コレクレー" ||
         inputValue === "オーガポン" ||
+        inputValue === "ガチグマ" ||
         inputValue === "ウーラオス") {
         inputElement.classList.add("red-background");
     }
@@ -185,6 +186,8 @@ function showPokemonSuggestions(elementId) {
         suggestions = ["パフュートン♂", "パフュートン♀"];
     } else if (inputValue === "コレクレー") {
         suggestions = ["コレクレー(はこ)", "コレクレー(とほ)"];
+    } else if (inputValue === "ガチグマ") {
+        suggestions = ["ガチグマ", "ガチグマ(あかつき)"];
     } else if (inputValue === "オーガポン") {
         suggestions = ["オーガポン", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
     } else if (inputValue === "ウーラオス") {
