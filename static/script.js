@@ -27,12 +27,11 @@ $(document).ready(function () {
             alert("URLを入力してください。");
             event.preventDefault();
         }
+
+        if (document.querySelector('.red-background')) {
+            event.preventDefault();
+            alert('フォルムを選択してください。');
+        }
     });
 });
 
-document.getElementById('form').addEventListener('submit', function (event) {
-    if (document.querySelector('.red-background')) {
-        event.preventDefault();
-        alert('フォルムを選択してください。');
-    }
-});
