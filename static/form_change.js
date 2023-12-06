@@ -187,7 +187,7 @@ function showPokemonSuggestions(elementId) {
     } else if (inputValue === "コレクレー") {
         suggestions = ["コレクレー(はこ)", "コレクレー(とほ)"];
     } else if (inputValue === "ガチグマ") {
-        suggestions = ["ガチグマ", "ガチグマ(あかつき)"];
+        suggestions = ["ガチグマ", "ガチグマ(アカツキ)"];
     } else if (inputValue === "オーガポン") {
         suggestions = ["オーガポン", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
     } else if (inputValue === "ウーラオス") {
