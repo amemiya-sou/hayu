@@ -21,11 +21,18 @@ $(function () {
 });
 
 $(document).ready(function () {
-        $("form").submit(function (event) {
-            var urlInput = $("#url");
-            if (urlInput.val() === "") {
-                alert("URLを入力してください。");
-                event.preventDefault();
-            }
-        });
+    $("form").submit(function (event) {
+        var urlInput = $("#url");
+        if (urlInput.val() === "") {
+            alert("URLを入力してください。");
+            event.preventDefault();
+        }
     });
+});
+
+document.getElementById('form').addEventListener('submit', function (event) {
+    if (document.querySelector('.red-background')) {
+        event.preventDefault();
+        alert('フォルムを選択してください。');
+    }
+});
