@@ -1,3 +1,12 @@
+$(function(){
+    $('.check').on('click', function() {
+      if ($(this).prop('checked')){
+        $('.check').prop('checked', false);
+        $(this).prop('checked', true);
+      }
+    });
+  });
+
 $(function () {
     $("input").on("keydown", function (ev) {
         if ((ev.which && ev.which === 13) || (ev.keyCode && ev.keyCode === 13)) {
