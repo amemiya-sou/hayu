@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
 import cv2
-
-# OpenCL を無効化して libGL.so.1 エラーを回避
 cv2.ocl.setUseOpenCL(False)
 import numpy as np
 import pytesseract
-from PIL import Image, ImageFilter
+from PIL import Image
 import Levenshtein
 import os
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # 事前に用意したフルーツの画像
 fruit_images = {
@@ -1067,7 +1071,9 @@ def compare_images(img1, img2, roi_percent):
     similarity = np.sum(threshold_diff == 0) / np.prod(threshold_diff.shape)
     return similarity
 
-# Flaskアプリケーションのルーティング
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -1081,7 +1087,11 @@ def upload_file():
     if file.filename == '':
         return render_template('index.html', error='No selected file')
 
-    if file:
+    if file and allowed_file(file.filename):
+        # 画像の保存
+        filename = secure_filename('party_img.png')
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
         # 画像の読み込み
         img = Image.open(file)
 
