@@ -1,19 +1,16 @@
 from flask import Flask, render_template, request
-from werkzeug.utils import secure_filename
 import cv2
+
+# OpenCL を無効化して libGL.so.1 エラーを回避
 cv2.ocl.setUseOpenCL(False)
 import numpy as np
 import pytesseract
-from PIL import Image
+from PIL import Image, ImageFilter
 import Levenshtein
+import base64
 import os
 
 app = Flask(__name__)
-
-UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # 事前に用意したフルーツの画像
 fruit_images = {
@@ -1071,9 +1068,7 @@ def compare_images(img1, img2, roi_percent):
     similarity = np.sum(threshold_diff == 0) / np.prod(threshold_diff.shape)
     return similarity
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+# Flaskアプリケーションのルーティング
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -1081,18 +1076,17 @@ def index():
 @app.route('/', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return render_template('index.html', error='No file part')
+        return render_template('index.html', error='ファイルが見つかりません')
 
     file = request.files['file']
     if file.filename == '':
-        return render_template('index.html', error='No selected file')
+        return render_template('index.html', error='選択されたファイルがありません')
 
-    if file and allowed_file(file.filename):
-        # 画像の保存
-        filename = secure_filename('party_img.png')
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    if file:
+        # 画像をBASE64形式に変換
+        img_base64 = base64.b64encode(file.read()).decode('utf-8')
 
-        # 画像の読み込み
+        # 他の画像処理コードは変更なし
         img = Image.open(file)
 
         # パーセントで指定された範囲（12か所）
@@ -1111,10 +1105,7 @@ def upload_file():
             (54.5, 81, 69.5, 86)
         ]
 
-        # 画像の前処理（パーセントで範囲指定および二値化、ノイズ除去）
         processed_images = preprocess_image(img, percent_boxes)
-
-        # OCRの実行
         texts = [perform_ocr(processed_img) for processed_img in processed_images]
 
         # 最も近い言葉を検索して表示
@@ -1163,7 +1154,18 @@ def upload_file():
 
         # どれかの類似度が一定以上ならば結果のテンプレートにリダイレクト
         if any(messages):
-            return render_template("result.html", texts=texts, closest_words=closest_words, message1=messages[0], message2=messages[1], message3=messages[2], message4=messages[3], message5=messages[4], message6=messages[5])
-
+            return render_template(
+            "result.html",
+            img_base64=img_base64,
+            texts=texts,
+            closest_words=closest_words,
+            message1=messages[0],
+            message2=messages[1],
+            message3=messages[2],
+            message4=messages[3],
+            message5=messages[4],
+            message6=messages[5]
+        )
+        
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
