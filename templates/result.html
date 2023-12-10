@@ -54,18 +54,19 @@
                     <label for="name">最終順位：</label>
                     <input type="number" id="rank" name="rank" autocomplete="off">
                     <label>位</label><br>
-                    <img src="data:image/jpeg;base64,{{ img_base64 }}" alt="アップロードされた画像">
+                    <input type="text" id="img_src" name="img_src" style="display: none;" value="data:image/jpeg;base64,{{ img_base64 }}">
+                    <img src="data:image/jpeg;base64,{{ img_base64 }}" style="width: 90%;" alt="アップロードされた画像"><br>
                     <label for="pokemon1">ポケモン1：</label>
                     <input type="search" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
                         onfocus="showPokemonSuggestions('pokemon1')">
                     <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム1：</label>
+                    <label style="visibility: hidden;">ポケモン1：</label>
                     <input type="search" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[1] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ1：</label>
+                    <label style="visibility: hidden;">ポケモン1：</label>
                     <input type="search" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
                         value="{{ message1 }}"><br>
 
@@ -75,11 +76,11 @@
                         onfocus="showPokemonSuggestions('pokemon2')">
                     <div id="pokemon2suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム2：</label>
+                    <label style="visibility: hidden;">ポケモン2：</label>
                     <input type="search" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[3] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ2：</label>
+                    <label style="visibility: hidden;">ポケモン2：</label>
                     <input type="search" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
                         value="{{ message2 }}"><br>
 
@@ -89,11 +90,11 @@
                         onfocus="showPokemonSuggestions('pokemon3')">
                     <div id="pokemon3suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム3：</label>
+                    <label style="visibility: hidden;">ポケモン3：</label>
                     <input type="search" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[5] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ3：</label>
+                    <label style="visibility: hidden;">ポケモン3：</label>
                     <input type="search" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
                         value="{{ message3 }}"><br>
 
@@ -103,11 +104,11 @@
                         onfocus="showPokemonSuggestions('pokemon4')">
                     <div id="pokemon4suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム4：</label>
+                    <label style="visibility: hidden;">ポケモン4：</label>
                     <input type="search" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[7] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ4：</label>
+                    <label style="visibility: hidden;">ポケモン4：</label>
                     <input type="search" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
                         value="{{ message4 }}"><br>
 
@@ -117,11 +118,11 @@
                         onfocus="showPokemonSuggestions('pokemon5')">
                     <div id="pokemon5suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム5：</label>
+                    <label style="visibility: hidden;">ポケモン5：</label>
                     <input type="search" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[9] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ5：</label>
+                    <label style="visibility: hidden;">ポケモン5：</label>
                     <input type="search" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
                         value="{{ message5 }}"><br>
 
@@ -131,11 +132,11 @@
                         onfocus="showPokemonSuggestions('pokemon6')">
                     <div id="pokemon6suggestions" class="suggestions" style="display:none;"></div><br>
 
-                    <label style="visibility: hidden;">アイテム6：</label>
+                    <label style="visibility: hidden;">ポケモン6：</label>
                     <input type="search" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
                         value="{{ closest_words[11] }}"><br>
 
-                    <label style="visibility: hidden;">テラスタ6：</label>
+                    <label style="visibility: hidden;">ポケモン6：</label>
                     <input type="search" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
                         value="{{ message6 }}"><br>
 
