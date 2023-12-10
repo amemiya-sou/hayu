@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request
 import cv2
-
-# OpenCL を無効化して libGL.so.1 エラーを回避
-cv2.ocl.setUseOpenCL(False)
 import numpy as np
 import pytesseract
 from PIL import Image, ImageFilter
