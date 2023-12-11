@@ -44,3 +44,12 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $("form").submit(function (event) {
+        // シングルまたはダブルのどちらかが選択されているかを確認
+        if (!$(".check:checked").length) {
+            alert("ルールを選択してください。");
+            event.preventDefault(); // フォーム送信を阻止
+        }
+    });
+});
