@@ -18,6 +18,36 @@ header {
   position: relative;
 }
 
+.url:hover {
+  text-decoration: underline;
+}
+
+.red-background {
+  background-color: #fa8072;
+}
+
+.white-background {
+  background-color: #ffffff;
+}
+
+.suggestions {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 1200000px;
+  overflow-y: auto;
+  margin-left: 13%;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0;
+}
+
 h1 {
   color: #fff;
 }
