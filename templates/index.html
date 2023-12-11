@@ -40,11 +40,10 @@
                 </form>
                 </p>
                 <form action="https://amemiyapoke.lolitapunk.jp/test/html/save_to_database.php" method="post">
-
+                    <input type="text" id="approval" name="approval" style="display: none;" value="false">
                     <label for="url">ルール：</label>
                     <label><input type="checkbox" name="tag1" class="check" value="single">シングル</label>
                     <label><input type="checkbox" name="tag1" class="check" value="double" id="double">ダブル</label><br>
-
                     <label for="season">シーズン：</label>
                     <select name="season" id="season">
                         <option value="">-----</option>
@@ -62,13 +61,8 @@
                         <option value="season2">シーズン2</option>
                         <option value="season1">シーズン1</option>
                     </select><br>
-
                     <label for="url">記事URL：</label>
                     <input type="text" id="url" name="url" autocomplete="off"><br>
-                    <!--
-                <label for="title">記事タイトル：</label>
-                <input type="text" id="title" name="title"><br>
-                -->
                     <label for="name">制作者名：</label>
                     <input type="text" id="name" name="name" autocomplete="off"><br>
                     <label for="rank">最終順位：</label>
