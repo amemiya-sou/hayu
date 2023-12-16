@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
@@ -73,7 +72,7 @@
                     <label for="pokemon1">ポケモン1：</label>
                     <input type="search" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
-                        onfocus="showPokemonSuggestions('pokemon1')">
+                        onfocus="showPokemonSuggestions('pokemon1')" onblur="myBlurFunction('pokemon1')">
                     <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン1：</label>
@@ -87,7 +86,7 @@
                     <label for="pokemon2">ポケモン2：</label>
                     <input type="search" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[2] }}" oninput="changeColor('pokemon2')"
-                        onfocus="showPokemonSuggestions('pokemon2')">
+                        onfocus="showPokemonSuggestions('pokemon2')" onblur="myBlurFunction('pokemon2')">
                     <div id="pokemon2suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン2：</label>
@@ -101,7 +100,7 @@
                     <label for="pokemon3">ポケモン3：</label>
                     <input type="search" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[4] }}" oninput="changeColor('pokemon3')"
-                        onfocus="showPokemonSuggestions('pokemon3')">
+                        onfocus="showPokemonSuggestions('pokemon3')" onblur="myBlurFunction('pokemon3')">
                     <div id="pokemon3suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン3：</label>
@@ -115,7 +114,7 @@
                     <label for="pokemon4">ポケモン4：</label>
                     <input type="search" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[6] }}" oninput="changeColor('pokemon4')"
-                        onfocus="showPokemonSuggestions('pokemon4')">
+                        onfocus="showPokemonSuggestions('pokemon4')" onblur="myBlurFunction('pokemon4')">
                     <div id="pokemon4suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン4：</label>
@@ -129,7 +128,7 @@
                     <label for="pokemon5">ポケモン5：</label>
                     <input type="search" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[8] }}" oninput="changeColor('pokemon5')"
-                        onfocus="showPokemonSuggestions('pokemon5')">
+                        onfocus="showPokemonSuggestions('pokemon5')" onblur="myBlurFunction('pokemon5')">
                     <div id="pokemon5suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン5：</label>
@@ -143,7 +142,7 @@
                     <label for="pokemon6">ポケモン6：</label>
                     <input type="search" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
                         value="{{ closest_words[10] }}" oninput="changeColor('pokemon6')"
-                        onfocus="showPokemonSuggestions('pokemon6')">
+                        onfocus="showPokemonSuggestions('pokemon6')" onblur="myBlurFunction('pokemon6')">
                     <div id="pokemon6suggestions" class="suggestions" style="display:none;"></div><br>
 
                     <label style="visibility: hidden;">ポケモン6：</label>
@@ -162,6 +161,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='form_change.js') }}"></script>
     <div>{{ texts[8] }}</div>
 

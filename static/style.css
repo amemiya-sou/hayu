@@ -34,9 +34,7 @@ header {
   position: absolute;
   background-color: #fff;
   border: 1px solid #ccc;
-  max-height: 1200000px;
   overflow-y: auto;
-  margin-left: 13%;
 }
 
 .suggestion {
@@ -45,7 +43,8 @@ header {
 }
 
 .suggestion:hover {
-  background-color: #f0f0f0;
+  background-color: #007fff;
+  color: #fff;
 }
 
 h1 {

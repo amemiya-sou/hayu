@@ -1,11 +1,34 @@
-$(function(){
-    $('.check').on('click', function() {
-      if ($(this).prop('checked')){
-        $('.check').prop('checked', false);
-        $(this).prop('checked', true);
-      }
+document.getElementById('file-input').addEventListener('change', function () {
+    document.getElementById('upload-form').submit();
+});
+
+window.addEventListener('DOMContentLoaded', function () {
+    // Loop through pokemon1 to pokemon6
+    for (var i = 1; i <= 6; i++) {
+        var pokemonId = 'pokemon' + i;
+        var suggestionsId = 'pokemon' + i + 'suggestions';
+
+        // Get elements by their ids
+        var pokemon = document.getElementById(pokemonId);
+        var suggestions = document.getElementById(suggestionsId);
+
+        // Set width of suggestions to the width of pokemon
+        suggestions.style.width = getComputedStyle(pokemon).width;
+
+        // Set left position of suggestions based on pokemon's position
+        var rect = pokemon.getBoundingClientRect();
+        suggestions.style.left = rect.left + 'px';
+    }
+});
+
+$(function () {
+    $('.check').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.check').prop('checked', false);
+            $(this).prop('checked', true);
+        }
     });
-  });
+});
 
 $(function () {
     $("input").on("keydown", function (ev) {
