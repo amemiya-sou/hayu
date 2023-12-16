@@ -54,25 +54,45 @@ $(function () {
 
 $(document).ready(function () {
     $("form").submit(function (event) {
+        // シングルまたはダブルのどちらかが選択されているかを確認
+        if (!$(".check:checked").length) {
+            alert("ルールを選択してください。");
+            event.preventDefault(); // フォーム送信を阻止
+        }
+    });
+});
+
+
+$(document).ready(function () {
+    $("form").submit(function (event) {
+
+        var urlInput = $("#season");
+        if (urlInput.val() === "") {
+            alert("シーズンを選択してください。");
+            event.preventDefault();
+        }
+
         var urlInput = $("#url");
         if (urlInput.val() === "") {
             alert("URLを入力してください。");
             event.preventDefault();
         }
 
+        var urlInput = $("#name");
+        if (urlInput.val() === "") {
+            alert("制作者名を入力してください。");
+            event.preventDefault();
+        }
+
+        var urlInput = $("#rank");
+        if (urlInput.val() === "") {
+            alert("最終順位を入力してください。");
+            event.preventDefault();
+        }
+
         if (document.querySelector('.red-background')) {
             event.preventDefault();
             alert('フォルムを選択してください。');
-        }
-    });
-});
-
-$(document).ready(function () {
-    $("form").submit(function (event) {
-        // シングルまたはダブルのどちらかが選択されているかを確認
-        if (!$(".check:checked").length) {
-            alert("ルールを選択してください。");
-            event.preventDefault(); // フォーム送信を阻止
         }
     });
 });

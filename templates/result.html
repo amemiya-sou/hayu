@@ -31,20 +31,19 @@
         <h2>構築収集フォーム</h2>
         <div class="package">
             <div id="form">
-                <p>必須項目はルールと記事URLのみですが、可能な限り入力していただけると助かります。</p>
-
-                <p>レンタル画像からポケモン名と持ち物を自動で読み取れます。精度は低いため適宜調整してください。</p>
-                <p>
+                <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
+                <p><span>レンタル画像からポケモン名と持ち物を自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</span>
                 <form method="post" enctype="multipart/form-data" id="upload-form">
                     <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
                 </form>
                 </p>
+                <div style="color: red;">*は必須項目です。</div>
                 <form action="https://amemiyapoke.lolitapunk.jp/test/html/save_to_database.php" method="post">
                     <input type="text" id="approval" name="approval" style="display: none;" value="false">
-                    <label for="url">ルール：</label>
-                    <label><input type="checkbox" name="rule[]" class="check" value="single">シングル</label>
+                    <label for="url">ルール<span style="color: red;">*</span>：</label>
+                    <label><input type="checkbox" name="rule[]" class="check" value="single" id="single">シングル</label>
                     <label><input type="checkbox" name="rule[]" class="check" value="double" id="double">ダブル</label><br>
-                    <label for="season">シーズン：</label>
+                    <label for="season">シーズン<span style="color: red;">*</span>：</label>
                     <select name="season" id="season">
                         <option value="">-----</option>
                         <option value="season13">シーズン13</option>
@@ -61,11 +60,11 @@
                         <option value="season2">シーズン2</option>
                         <option value="season1">シーズン1</option>
                     </select><br>
-                    <label for="url">記事URL：</label>
+                    <label for="url">記事URL<span style="color: red;">*</span>：</label>
                     <input type="text" id="url" name="url" autocomplete="off"><br>
-                    <label for="name">制作者名：</label>
+                    <label for="name">制作者名<span style="color: red;">*</span>：</label>
                     <input type="text" id="name" name="name" autocomplete="off"><br>
-                    <label for="rank">最終順位：</label>
+                    <label for="rank">最終順位<span style="color: red;">*</span>：</label>
                     <input type="number" id="rank" name="rank" autocomplete="off">
                     <label>位</label><br>
                     <img src="data:image/jpeg;base64,{{ img_base64 }}" style="width: 90%;" alt="アップロードされた画像"><br>
