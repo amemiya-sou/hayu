@@ -215,7 +215,7 @@ function myBlurFunction(elementId) {
     setTimeout(function () {
         var suggestionsContainer = document.getElementById(elementId + "suggestions");
         suggestionsContainer.style.display = "none";
-    }, 100); // 100ミリ秒（0.1秒）の遅延を設定
+    }, 150); // 100ミリ秒（0.1秒）の遅延を設定
 }
 
 //内容が変更されたら背景を元に戻す

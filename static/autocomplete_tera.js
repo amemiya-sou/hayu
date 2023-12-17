@@ -42,7 +42,8 @@ $(function () {
                 "ドラゴン",
                 "あく",
                 "はがね",
-                "フェアリー"
+                "フェアリー",
+                "ステラ"
             ];
             var term = request.term.toUpperCase();
 
