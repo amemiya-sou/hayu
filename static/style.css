@@ -72,10 +72,10 @@ h1 {
 }
 
 .package {
-  /*border: 2px solid #008f89;
-  background-color: #ffffff;*/
   margin: 5px;
   border-radius: 0px;
+  padding: 5px;
+  padding-top: 0px;
 }
 
 .text-links {
@@ -107,8 +107,18 @@ h1 {
   box-shadow: 0 0 10px rgba(61, 61, 61, 0.308);
   background-color: #fff;
   margin: 10px;
-  width: 47%;
+  width: 100%;
   max-width: 615px;
+}
+
+.tart img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nina {
+  margin: 5px;
 }
 
 @media (max-width: 715px) {
@@ -145,10 +155,11 @@ h1 {
 }
 
 h2 {
-  background-color: aliceblue;
+  background-color: #fff4ea;
   padding: 5px;
   margin-top: 0px;
   margin-bottom: 0px;
+  font-size: 20px;
 }
 
 .container {

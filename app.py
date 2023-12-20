@@ -29,6 +29,7 @@ fruit_images = {
     "むし": cv2.imread("img/mushi.png"),
     "ノーマル": cv2.imread("img/normal.png"),
     "じめん": cv2.imread("img/zimen.png"),
+    "ステラ": cv2.imread("img/sutera.png"),
 }
 
 # 読み取る言葉のリスト

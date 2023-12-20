@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <title>ダブル構築まとめ屋さん。</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animation.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,70 +17,100 @@
 </head>
 
 <body>
+    <div id="overlay"></div>
+    <svg id="loading-overlay" class="spinner" width="65px" height="65px" viewBox="0 0 66 66"
+        xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
     <header>
-        <h1>構築まとめ屋さん。</h1>
-        <div id="search-bar">
-            <input type="text" id="search-input" placeholder="検索">
+        <h1><a href="pagetop.php">構築まとめ屋さん。</a></h1>
+        <form id="search-bar" action="search.php" method="get">
+            <input type="text" id="search-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
                 <i class="fas fa-search fa-fw"></i>
             </button>
-        </div>
+        </form>
     </header>
 
-    <div class="tart">
-        <h2>構築収集フォーム</h2>
-        <div class="package">
-            <div id="form">
-                <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
-                <p><span>レンタル画像からポケモン名と持ち物を自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</span>
-                <form method="post" enctype="multipart/form-data" id="upload-form">
-                    <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
-                </form>
-                </p>
-                <div style="color: red;">*は必須項目です。</div>
-                <form action="https://amemiyapoke.lolitapunk.jp/test/html/save_to_database.php" method="post">
-                    <input type="text" id="approval" name="approval" style="display: none;" value="false">
-                    <label for="url">ルール<span style="color: red;">*</span>：</label>
-                    <label><input type="checkbox" name="rule[]" class="check" value="single" id="single">シングル</label>
-                    <label><input type="checkbox" name="rule[]" class="check" value="double" id="double">ダブル</label><br>
-                    <label for="season">シーズン<span style="color: red;">*</span>：</label>
-                    <select name="season" id="season">
-                        <option value="">-----</option>
-                        <option value="season13">シーズン13</option>
-                        <option value="season12">シーズン12</option>
-                        <option value="season11">シーズン11</option>
-                        <option value="season10">シーズン10</option>
-                        <option value="season9">シーズン9</option>
-                        <option value="season8">シーズン8</option>
-                        <option value="season7">シーズン7</option>
-                        <option value="season6">シーズン6</option>
-                        <option value="season5">シーズン5</option>
-                        <option value="season4">シーズン4</option>
-                        <option value="season3">シーズン3</option>
-                        <option value="season2">シーズン2</option>
-                        <option value="season1">シーズン1</option>
-                    </select><br>
-                    <label for="url">記事URL<span style="color: red;">*</span>：</label>
-                    <input type="text" id="url" name="url" autocomplete="off"><br>
-                    <label for="name">制作者名<span style="color: red;">*</span>：</label>
-                    <input type="text" id="name" name="name" autocomplete="off"><br>
-                    <label for="rank">最終順位<span style="color: red;">*</span>：</label>
-                    <input type="number" id="rank" name="rank" autocomplete="off">
-                    <label>位</label><br>
+    <div class="tarts-container">
+        <div class="tart">
+            <h2>構築収集フォーム</h2>
+            <div class="package">
+                <div id="form">
+                    <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
+                    <p><span>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。精度は100%ではないため適宜調整してください。</span>
+                    <form method="post" enctype="multipart/form-data" id="upload-form">
+                        <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
+                    </form>
                     <script>
-                        for (let i = 1; i <= 6; i++) {
-                            document.write(`
-                        <label for="pokemon${i}">ポケモン${i}：</label>
-                        <input type="search" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
-                        <label style="visibility: hidden;">ポケモン${i}：</label>
-                        <input type="search" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
-                        <label style="visibility: hidden;">ポケモン${i}：</label>
-                        <input type="search" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
-                      `);
+                        document.getElementById('file-input').addEventListener('change', function () {
+                            showLoading();
+                        });
+                        function showLoading() {
+                            document.getElementById('overlay').style.display = 'flex';
+                            document.getElementById('loading-overlay').style.display = 'flex';
                         }
                     </script>
-                    <input type="submit" value="送信" class="botan">
-                </form>
+                    </p>
+                    <div style="color: red;">*は必須項目です。</div>
+                    <form action="https://amemiyapoke.lolitapunk.jp/test/html/save_to_database.php" method="post">
+                        <input type="text" id="approval" name="approval" style="display: none;" value="false">
+                        <label for="url">ルール<span style="color: red;">*</span>：</label>
+                        <label><input type="checkbox" name="rule[]" class="check" value="single"
+                                id="single">シングル</label>
+                        <label><input type="checkbox" name="rule[]" class="check" value="double"
+                                id="double">ダブル</label><br>
+                        <label for="season">シーズン<span style="color: red;">*</span>：</label>
+                        <select name="season" id="season">
+                            <option value="">-----</option>
+                            <option value="season13">シーズン13</option>
+                            <option value="season12">シーズン12</option>
+                            <option value="season11">シーズン11</option>
+                            <option value="season10">シーズン10</option>
+                            <option value="season9">シーズン9</option>
+                            <option value="season8">シーズン8</option>
+                            <option value="season7">シーズン7</option>
+                            <option value="season6">シーズン6</option>
+                            <option value="season5">シーズン5</option>
+                            <option value="season4">シーズン4</option>
+                            <option value="season3">シーズン3</option>
+                            <option value="season2">シーズン2</option>
+                            <option value="season1">シーズン1</option>
+                        </select><br>
+                        <label for="url">記事URL<span style="color: red;">*</span>：</label>
+                        <input type="text" id="url" name="url" autocomplete="off"><br>
+                        <label for="name">制作者名<span style="color: red;">*</span>：</label>
+                        <input type="text" id="name" name="name" autocomplete="off"><br>
+                        <label for="rank">最終順位<span style="color: red;">*</span>：</label>
+                        <input type="text" id="rank" name="rank" autocomplete="off">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var rankInput = document.getElementById('rank');
+                                rankInput.addEventListener('input', function (event) {
+                                    var inputValue = event.target.value;
+                                    var convertedValue = inputValue.replace(/[０-９]/g, function (s) {
+                                        return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
+                                    });
+                                    rankInput.value = convertedValue;
+                                });
+                            });
+                        </script>
+                        <label>位</label><br>
+                        <script>
+                            for (let i = 1; i <= 6; i++) {
+                                document.write(`
+                                <label for="pokemon${i}">ポケモン${(i === 1) ? '１' : (i === 2) ? '２' : (i === 3) ? '３' : (i === 4) ? '４' : (i === 5) ? '５' : (i === 6) ? '６' : ''}：</label>
+                        <input type="search" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
+                        <label style="visibility: hidden;">ポケモン${'１'}：</label>
+                        <input type="search" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
+                        <label style="visibility: hidden;">ポケモン${'１'}：</label>
+                        <input type="search" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
+                      `);
+                            }
+                        </script>
+                        <input type="submit" value="送信" class="botan">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

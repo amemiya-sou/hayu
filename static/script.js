@@ -2,23 +2,28 @@ document.getElementById('file-input').addEventListener('change', function () {
     document.getElementById('upload-form').submit();
 });
 
-window.addEventListener('DOMContentLoaded', function () {
-    // Loop through pokemon1 to pokemon6
+function adjustPokemonSuggestions() {
     for (var i = 1; i <= 6; i++) {
         var pokemonId = 'pokemon' + i;
         var suggestionsId = 'pokemon' + i + 'suggestions';
-
-        // Get elements by their ids
         var pokemon = document.getElementById(pokemonId);
         var suggestions = document.getElementById(suggestionsId);
-
-        // Set width of suggestions to the width of pokemon
         suggestions.style.width = getComputedStyle(pokemon).width;
-
-        // Set left position of suggestions based on pokemon's position
         var rect = pokemon.getBoundingClientRect();
         suggestions.style.left = rect.left + 'px';
     }
+}
+window.addEventListener('DOMContentLoaded', adjustPokemonSuggestions);
+window.addEventListener('resize', adjustPokemonSuggestions);
+
+window.addEventListener('DOMContentLoaded', function () {
+    var season = document.getElementById('season');
+    var rank = document.getElementById('rank');
+    var seasonWidth = getComputedStyle(season).width;
+    var rankWidth = (parseFloat(seasonWidth) - 7.7) + 'px';
+    rank.style.width = rankWidth;
+    var rect = season.getBoundingClientRect();
+    rank.style.left = rect.left + 'px';
 });
 
 $(function () {
@@ -85,10 +90,18 @@ $(document).ready(function () {
         }
 
         var urlInput = $("#rank");
-        if (urlInput.val() === "") {
+        var inputValue = urlInput.val();
+        if (inputValue.trim() === "") {
             alert("最終順位を入力してください。");
             event.preventDefault();
+        } else {
+            var nonNumericPattern = /[^0-9]/;
+            if (nonNumericPattern.test(inputValue)) {
+                alert("順位は数字のみを入力してください。");
+                event.preventDefault();
+            }
         }
+
 
         if (document.querySelector('.red-background')) {
             event.preventDefault();
