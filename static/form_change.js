@@ -2,6 +2,8 @@
 window.onload = function () {
     for (var i = 1; i <= 6; i++) {
         checkInitialValue('pokemon' + i);
+        checkInitialValue('item' + i);
+        checkInitialValue('tera' + i);
     }
 };
 
