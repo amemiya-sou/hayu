@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-    <title>ダブル構築まとめ屋さん。</title>
+    <title>構築まとめ屋。</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animation.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -23,8 +23,8 @@
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
     <header>
-        <h1><a href="pagetop.php">構築まとめ屋さん。</a></h1>
-        <form id="search-bar" action="search.php" method="get">
+        <h1><a href="https://amemiyapoke.lolitapunk.jp/test/html/search.php">構築まとめ屋。</a></h1>
+        <form id="search-bar" action="https://amemiyapoke.lolitapunk.jp/test/html/search.php" method="get">
             <input type="text" id="search-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
                 <i class="fas fa-search fa-fw"></i>
@@ -53,7 +53,7 @@
                     </script>
                     </p>
                     <div style="color: red;">*は必須項目です。</div>
-                    <form action="https://amemiyapoke.lolitapunk.jp/test/html/save_to_database.php" method="post">
+                    <form action="https://amemiyapoke.lolitapunk.jp/test/html/database/save_to_database.php" method="post">
                         <input type="text" id="approval" name="approval" style="display: none;" value="false">
                         <label for="url">ルール<span style="color: red;">*</span>：</label>
                         <label><input type="checkbox" name="rule[]" class="check" value="single"
