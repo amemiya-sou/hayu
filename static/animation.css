@@ -44,6 +44,7 @@
 @keyframes dash {
     0% {
         stroke-dashoffset: 187;
+        transform: rotate(0deg);
     }
 
     50% {
@@ -69,9 +70,11 @@
 }
 
 #loading-overlay {
-    position: absolute;
+    display: none;
+    position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    margin-left: -32.5px;
+    margin-top: -32.5px;
     z-index: 9999;
 }

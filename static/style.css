@@ -4,18 +4,38 @@ body {
   padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 header {
-  background-color: #008f89;
+  background-color: #158a78;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+}
+
+#site-title {
+  text-decoration: none;
+  color: #fff;
+}
+
+#search-bar {
+  position: absolute;
+  right: 10px;
+}
+
+#search-input {
+  width: 150px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 3px;
+  border: solid black 2px;
+  outline: none;
+}
+
+#search-icon {
+  height: 35px;
+  width: 35px;
+  font-size: 15px;
 }
 
 .url:hover {
@@ -95,10 +115,11 @@ h1 {
   margin-bottom: 0;
 }
 
-.tarts-container {
+.fruit-tart {
   display: flex;
   align-items: start;
-  margin: 15px;
+  margin: 0px 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -106,9 +127,10 @@ h1 {
 .tart {
   box-shadow: 0 0 10px rgba(61, 61, 61, 0.308);
   background-color: #fff;
-  margin: 10px;
+  margin-top: 30px;
   width: 100%;
   max-width: 615px;
+  border-radius: 5px;
 }
 
 .tart img {
@@ -117,7 +139,7 @@ h1 {
   width: 100%;
 }
 
-.nina {
+.party_img {
   margin: 5px 0px;
 }
 

@@ -22,17 +22,19 @@
         xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
+
     <header>
-        <h1><a href="https://amemiyapoke.lolitapunk.jp/test/html/search.php">構築まとめ屋。</a></h1>
-        <form id="search-bar" action="https://amemiyapoke.lolitapunk.jp/test/html/search.php" method="get">
-            <input type="text" id="search-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で検索">
+        <h1><a href="https://matomeyapoke.com" id="site-title">構築まとめ屋。</a></h1>
+        <form id="search-bar" action="https://matomeyapoke.com/search.php" method="get">
+            <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
+                placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
                 <i class="fas fa-search fa-fw"></i>
             </button>
         </form>
     </header>
 
-    <div class="tarts-container">
+    <div class="fruit-tart">
         <div class="tart">
             <h2>構築収集フォーム</h2>
             <div class="package">
@@ -53,7 +55,7 @@
                     </script>
                     </p>
                     <div style="color: red;">*は必須項目です。</div>
-                    <form action="https://amemiyapoke.lolitapunk.jp/test/html/database/save_to_database.php" method="post">
+                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
                         <input type="text" id="approval" name="approval" style="display: none;" value="false">
                         <label for="url">ルール<span style="color: red;">*</span>：</label>
                         <label><input type="checkbox" name="rule[]" class="check" value="single"
@@ -100,11 +102,11 @@
                             for (let i = 1; i <= 6; i++) {
                                 document.write(`
                                 <label for="pokemon${i}">ポケモン${(i === 1) ? '１' : (i === 2) ? '２' : (i === 3) ? '３' : (i === 4) ? '４' : (i === 5) ? '５' : (i === 6) ? '６' : ''}：</label>
-                        <input type="search" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
+                        <input type="search" class="pokemon_input" id="pokemon${i}" name="pokemon${i}" autocomplete="off" ${(i === 1) ? 'placeholder="ポケモン名"' : ''}><br>
                         <label style="visibility: hidden;">ポケモン${'１'}：</label>
-                        <input type="search" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
+                        <input type="search" class="item_input" id="item${i}" name="item${i}" autocomplete="off" ${(i === 1) ? 'placeholder="もちもの"' : ''}><br>
                         <label style="visibility: hidden;">ポケモン${'１'}：</label>
-                        <input type="search" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
+                        <input type="search" class="tera_input" id="tera${i}" name="tera${i}" autocomplete="off" ${(i === 1) ? 'placeholder="テラスタル"' : ''}><br>
                       `);
                             }
                         </script>

@@ -36,7 +36,7 @@ $(function () {
 });
 
 $(function () {
-    $("input").on("keydown", function (ev) {
+    $("#party_form").on("keydown", function (ev) {
         if ((ev.which && ev.which === 13) || (ev.keyCode && ev.keyCode === 13)) {
             return false;
         } else {
@@ -58,7 +58,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $("form").submit(function (event) {
+    $("#party_form").submit(function (event) {
         // シングルまたはダブルのどちらかが選択されているかを確認
         if (!$(".check:checked").length) {
             alert("ルールを選択してください。");
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $("form").submit(function (event) {
+    $("#party_form").submit(function (event) {
 
         var urlInput = $("#season");
         if (urlInput.val() === "") {

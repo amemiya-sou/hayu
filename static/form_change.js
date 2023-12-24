@@ -210,7 +210,37 @@ function showPokemonSuggestions(elementId) {
         } else {
             suggestionsContainer.style.display = "none";
         }
-    }
+    }/* else {
+        var inputValue = inputElement.value;
+        var suggestions = [];
+        if (inputValue === "ウーラオス(れんげき)") {
+            suggestions = ["ウーラオス(いちげき)", "ウーラオス(れんげき)"];
+        }
+        //候補を表示する場所を定義する
+        var suggestionsContainer = document.getElementById(elementId + "suggestions");
+        suggestionsContainer.innerHTML = "";
+
+        //候補の数だけ繰り返し
+        for (var i = 0; i < suggestions.length; i++) {
+            var suggestion = suggestions[i];
+            var suggestionElement = document.createElement("div");
+            suggestionElement.className = "suggestion";
+            suggestionElement.textContent = suggestion;
+            //候補を選んだ時の処理
+            suggestionElement.onclick = function () {
+                document.getElementById(elementId).classList.replace("sakuraino", "sakuraino");
+                document.getElementById(elementId).value = this.textContent;
+                suggestionsContainer.innerHTML = "";
+                suggestionsContainer.style.display = "none";
+            };
+            suggestionsContainer.appendChild(suggestionElement);
+        }
+        if (suggestions.length > 0) {
+            suggestionsContainer.style.display = "block";
+        } else {
+            suggestionsContainer.style.display = "none";
+        }
+    }*/
 }
 
 //フォーカスを外したら候補を消す
@@ -229,3 +259,4 @@ function changeColor(elementId) {
         inputElement.classList.remove("red-background");
     }
 }
+

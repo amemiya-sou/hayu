@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-    <title>ダブル構築まとめ屋さん。</title>
+    <title>構築まとめ屋。</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animation.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -14,7 +14,6 @@
     <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
-    <script src="{{ url_for('static', filename='autocomplete_form.js') }}"></script>
 </head>
 
 <body>
@@ -23,17 +22,19 @@
         xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
+
     <header>
-        <h1><a href="https://amemiyapoke.lolitapunk.jp/test/html/search.php">構築まとめ屋。</a></h1>
-        <form id="search-bar" action="https://amemiyapoke.lolitapunk.jp/test/html/search.php" method="get">
-            <input type="text" id="search-input" name="pokemon0" autocomplete="off" placeholder="ポケモン名で検索">
+        <h1><a href="https://matomeyapoke.com" id="site-title">構築まとめ屋。</a></h1>
+        <form id="search-bar" action="https://matomeyapoke.com/search.php" method="get">
+            <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
+                placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
                 <i class="fas fa-search fa-fw"></i>
             </button>
         </form>
     </header>
 
-    <div class="tarts-container">
+    <div class="fruit-tart">
         <div class="tart">
             <h2>構築収集フォーム</h2>
             <div class="package">
@@ -54,7 +55,7 @@
                     </script>
                     </p>
                     <div style="color: red;">*は必須項目です。</div>
-                    <form action="https://amemiyapoke.lolitapunk.jp/test/html/database/save_to_database.php" method="post">
+                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
                         <input type="text" id="approval" name="approval" style="display: none;" value="false">
                         <label for="url">ルール<span style="color: red;">*</span>：</label>
                         <label><input type="checkbox" name="rule[]" class="check" value="single"
@@ -97,91 +98,91 @@
                             });
                         </script>
                         <label>位</label><br>
-                        <div class="nina">
+                        <div class="party_img">
                             <img src="data:image/jpeg;base64,{{ img_base64 }}" alt="アップロードされた画像">
                         </div>
                         <label for="pokemon1">ポケモン１：</label>
-                        <input type="search" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
                             onfocus="showPokemonSuggestions('pokemon1')" onblur="myBlurFunction('pokemon1')">
                         <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン１：</label>
-                        <input type="search" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[1] }}"><br>
+                        <input type="search" class="item_input" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[1] }}" oninput="changeColor('item1')"><br>
 
                         <label style="visibility: hidden;">ポケモン１：</label>
-                        <input type="search" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
                             value="{{ message1 }}"><br>
 
                         <label for="pokemon2">ポケモン２：</label>
-                        <input type="search" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon2" name="pokemon2" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[2] }}" oninput="changeColor('pokemon2')"
                             onfocus="showPokemonSuggestions('pokemon2')" onblur="myBlurFunction('pokemon2')">
                         <div id="pokemon2suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン２：</label>
-                        <input type="search" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[3] }}"><br>
+                        <input type="search" class="item_input" id="item2" name="item2" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[3] }}" oninput="changeColor('item2')"><br>
 
                         <label style="visibility: hidden;">ポケモン２：</label>
-                        <input type="search" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" id="tera2" name="tera2" autocomplete="off" placeholder="テラスタル"
                             value="{{ message2 }}"><br>
 
                         <label for="pokemon3">ポケモン３：</label>
-                        <input type="search" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon3" name="pokemon3" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[4] }}" oninput="changeColor('pokemon3')"
                             onfocus="showPokemonSuggestions('pokemon3')" onblur="myBlurFunction('pokemon3')">
                         <div id="pokemon3suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン３：</label>
-                        <input type="search" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[5] }}"><br>
+                        <input type="search" class="item_input" id="item3" name="item3" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[5] }}" oninput="changeColor('item3')"><br>
 
                         <label style="visibility: hidden;">ポケモン３：</label>
-                        <input type="search" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" id="tera3" name="tera3" autocomplete="off" placeholder="テラスタル"
                             value="{{ message3 }}"><br>
 
                         <label for="pokemon4">ポケモン４：</label>
-                        <input type="search" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon4" name="pokemon4" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[6] }}" oninput="changeColor('pokemon4')"
                             onfocus="showPokemonSuggestions('pokemon4')" onblur="myBlurFunction('pokemon4')">
                         <div id="pokemon4suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン４：</label>
-                        <input type="search" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[7] }}"><br>
+                        <input type="search" class="item_input" id="item4" name="item4" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[7] }}" oninput="changeColor('item4')"><br>
 
                         <label style="visibility: hidden;">ポケモン４：</label>
-                        <input type="search" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" id="tera4" name="tera4" autocomplete="off" placeholder="テラスタル"
                             value="{{ message4 }}"><br>
 
                         <label for="pokemon5">ポケモン５：</label>
-                        <input type="search" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon5" name="pokemon5" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[8] }}" oninput="changeColor('pokemon5')"
                             onfocus="showPokemonSuggestions('pokemon5')" onblur="myBlurFunction('pokemon5')">
                         <div id="pokemon5suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン５：</label>
-                        <input type="search" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[9] }}"><br>
+                        <input type="search" class="item_input" id="item5" name="item5" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[9] }}" oninput="changeColor('item5')"><br>
 
                         <label style="visibility: hidden;">ポケモン５：</label>
-                        <input type="search" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" class="tera_input" id="tera5" name="tera5" autocomplete="off" placeholder="テラスタル"
                             value="{{ message5 }}"><br>
 
                         <label for="pokemon6">ポケモン６：</label>
-                        <input type="search" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
+                        <input type="search" class="pokemon_input" id="pokemon6" name="pokemon6" autocomplete="off" placeholder="ポケモン名"
                             value="{{ closest_words[10] }}" oninput="changeColor('pokemon6')"
                             onfocus="showPokemonSuggestions('pokemon6')" onblur="myBlurFunction('pokemon6')">
                         <div id="pokemon6suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン６：</label>
-                        <input type="search" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[11] }}"><br>
+                        <input type="search" class="item_input" id="item6" name="item6" autocomplete="off" placeholder="もちもの"
+                            value="{{ closest_words[11] }}" oninput="changeColor('item6')"><br>
 
                         <label style="visibility: hidden;">ポケモン６：</label>
-                        <input type="search" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
+                        <input type="search" class="tera_input" id="tera6" name="tera6" autocomplete="off" placeholder="テラスタル"
                             value="{{ message6 }}"><br>
                         <input type="text" id="img_src" name="img_src" style="display: none;"
                             value="data:image/jpeg;base64,{{ img_base64 }}">
