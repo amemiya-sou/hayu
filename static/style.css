@@ -2,20 +2,22 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #EEEEEE;
 }
 
 header {
-  background-color: #158a78;
-  padding: 10px;
+  background-color: #0F868A;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 5px;
 }
 
-#site-title {
-  text-decoration: none;
-  color: #fff;
+.header_img {
+  width: 225px;
+  height: auto;
+  margin-bottom: -3px;
 }
 
 #search-bar {
@@ -38,16 +40,8 @@ header {
   font-size: 15px;
 }
 
-.url:hover {
-  text-decoration: underline;
-}
-
 .red-background {
-  background-color: #fa8072;
-}
-
-.white-background {
-  background-color: #ffffff;
+  background-color: #ff7a7a;
 }
 
 .suggestions {
@@ -67,70 +61,28 @@ header {
   color: #fff;
 }
 
-h1 {
-  color: #fff;
-}
-
-#search-bar {
-  position: absolute;
-  right: 10px;
-}
-
-#search-input {
-  width: 150px;
-  height: 30px;
-  font-size: 14px;
-  padding-left: 3px;
-  border: solid black 2px;
-  outline: none;
-}
-
-#search-icon {
-  height: 35px;
-  width: 35px;
-  font-size: 15px;
-}
-
 .package {
   margin: 5px;
-  border-radius: 0px;
-  padding: 5px;
-  padding-top: 0px;
-}
-
-.text-links {
-  margin: 5px;
-  list-style: none;
-  padding-left: 0;
-}
-
-.text-links li {
-  border-bottom: 1px black dashed;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.text-links li:last-child {
-  border-bottom: 0px;
-  margin-bottom: 0;
 }
 
 .fruit-tart {
   display: flex;
   align-items: start;
-  margin: 0px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .tart {
-  box-shadow: 0 0 10px rgba(61, 61, 61, 0.308);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px;
   background-color: #fff;
-  margin-top: 30px;
   width: 100%;
-  max-width: 615px;
+  margin: 0px 5px;
+  margin-top: 15px;
+  max-width: 600px;
   border-radius: 5px;
+  padding: 10px;
+  padding-top: 5px;
 }
 
 .tart img {
@@ -144,87 +96,41 @@ h1 {
 }
 
 @media (max-width: 715px) {
-
-  .tarts-container {
-    flex-direction: column;
-    align-items: center;
-    padding-right: 15px;
-  }
-
   .tart {
     width: 100%;
+    margin: 0px 10px;
+    margin-top: 10px;
   }
 
   header {
-    background-color: #008f89;
-    padding: 10px;
     display: block;
     justify-content: center;
     align-items: center;
     position: relative;
     text-align: center;
     padding-bottom: 10px;
+    margin-top: -10px;
   }
 
-  h1 {
-    color: #fff;
+  .header_img {
+    width: 200px;
+    margin: 0px;
+    margin-bottom: -10px;
   }
 
   #search-bar {
     position: relative;
-    right: 10px;
+    left: 5px;
+    margin-top: -5px;
+  }
+
+  #search-input {
+    margin-bottom: 5px;
+    width: 125px;
   }
 }
 
 h2 {
-  background-color: #fff4ea;
-  padding: 5px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 0px;
   font-size: 20px;
-}
-
-.container {
-  position: relative;
-  flex-grow: 0;
-  margin: -10px 0px 10px -5px;
-}
-
-.pokemon {
-  width: 50px;
-  height: auto;
-}
-
-/*アイテムの画像*/
-.item {
-  width: 25px;
-  height: auto;
-  position: absolute;
-  bottom: 0px;
-  left: 55%;
-}
-
-#riri {
-  padding: 0px 5px;
-  margin-top: 0px;
-  margin-bottom: -1px;
-}
-
-#hoho {
-  padding-left: 0;
-}
-
-/*containerを並べる*/
-.set {
-  display: flex;
-  justify-content: flex-start;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.pokemon_2 {
-  width: 50px;
-  height: auto;
-  margin-right: -10px;
-  margin-top: -8px;
 }

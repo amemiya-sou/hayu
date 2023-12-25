@@ -24,8 +24,12 @@
     </svg>
 
     <header>
-        <h1><a href="https://matomeyapoke.com" id="site-title">構築まとめ屋。</a></h1>
-        <form id="search-bar" action="https://matomeyapoke.com/search.php" method="get">
+        <h1>
+            <a href="index.php">
+                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" class="header_img">
+            </a>
+        </h1>
+        <form id="search-bar" action="search.php" method="get">
             <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
                 placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
@@ -36,7 +40,7 @@
 
     <div class="fruit-tart">
         <div class="tart">
-            <h2>構築収集フォーム</h2>
+            <h2 style="border-bottom: 3px solid #b2d5de;">構築収集フォーム</h2>
             <div class="package">
                 <div id="form">
                     <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
@@ -55,7 +59,8 @@
                     </script>
                     </p>
                     <div style="color: red;">*は必須項目です。</div>
-                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
+                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php"
+                        method="post">
                         <input type="text" id="approval" name="approval" style="display: none;" value="false">
                         <label for="url">ルール<span style="color: red;">*</span>：</label>
                         <label><input type="checkbox" name="rule[]" class="check" value="single"
