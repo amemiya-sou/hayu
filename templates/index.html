@@ -14,6 +14,12 @@
     <script src="{{ url_for('static', filename='autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='autocomplete_tera.js') }}"></script>
+    <style>
+        /* Add any additional styles if needed */
+        #url_x, #name_x,#url,#name {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,13 +55,12 @@
                         <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
                     </form>
                     <script>
-                        document.getElementById('file-input').addEventListener('change', function () {
-                            showLoading();
-                        });
-                        function showLoading() {
-                            document.getElementById('overlay').style.display = 'flex';
-                            document.getElementById('loading-overlay').style.display = 'flex';
-                        }
+                        // Get the X coordinate of name_x
+                        var nameX = document.getElementById('name_x').getBoundingClientRect().left;
+                
+                        // Set the X coordinate of url_x to match name_x
+                        var urlX = nameX - document.getElementById('url_x').offsetLeft;
+                        document.getElementById('url_x').style.left = urlX + 'px';
                     </script>
                     </p>
                     <div style="color: red;">*は必須項目です。</div>
@@ -88,34 +93,19 @@
                         <input type="text" id="url" name="url" autocomplete="off"><br>
                         <label for="name">制作者名<span style="color: red;">*</span><span id="name_x">：</span></label>
                         <input type="text" id="name" name="name" autocomplete="off"><br>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                alignCoordinates();
-                            });
-
-                            window.addEventListener('resize', function () {
-                                alignCoordinates();
-                            });
-
-                            function alignCoordinates() {
-                                var url_x = document.getElementById('url_x');
-                                var name_x = document.getElementById('name_x');
-                                var urlXCoordinate = url_x.getBoundingClientRect().left;
-                                name_x.style.left = urlXCoordinate + 'px';
-                            }
-                        </script>
                         <label for="rank">最終順位<span style="color: red;">*</span>：</label>
                         <input type="text" id="rank" name="rank" autocomplete="off">
                         <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var rankInput = document.getElementById('rank');
-                                rankInput.addEventListener('input', function (event) {
-                                    var inputValue = event.target.value;
-                                    var convertedValue = inputValue.replace(/[０-９]/g, function (s) {
-                                        return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
-                                    });
-                                    rankInput.value = convertedValue;
-                                });
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var urlElement = document.getElementById('url');
+                                var nameElement = document.getElementById('name');
+                                var urlX = urlElement.getBoundingClientRect().left;
+                                var nameX = nameElement.getBoundingClientRect().left;
+                                var offsetX = nameX - urlX;
+                                
+                                // id="url_x"の位置をid="name_x"に合わせる
+                                var urlXElement = document.getElementById('url_x');
+                                urlXElement.style.marginLeft = offsetX + 'px';
                             });
                         </script>
                         <label>位</label><br>
