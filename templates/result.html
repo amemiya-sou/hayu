@@ -24,8 +24,12 @@
     </svg>
 
     <header>
-        <h1><a href="https://matomeyapoke.com" id="site-title">構築まとめ屋。</a></h1>
-        <form id="search-bar" action="https://matomeyapoke.com/search.php" method="get">
+        <h1>
+            <a href="index.php">
+                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" class="header_img">
+            </a>
+        </h1>
+        <form id="search-bar" action="https://matomeyapoke.com/" method="get">
             <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
                 placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">

@@ -29,7 +29,7 @@
                 <img src="{{ url_for('static', filename='matomeyapoke.png') }}" class="header_img">
             </a>
         </h1>
-        <form id="search-bar" action="search.php" method="get">
+        <form id="search-bar" action="https://matomeyapoke.com/" method="get">
             <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
                 placeholder="ポケモン名で検索">
             <button type="submit" id="search-icon">
@@ -84,10 +84,26 @@
                             <option value="season2">シーズン2</option>
                             <option value="season1">シーズン1</option>
                         </select><br>
-                        <label for="url">記事URL<span style="color: red;">*</span>：</label>
+                        <label for="url">記事URL<span style="color: red;">*</span><span id="url_x">：</span></label>
                         <input type="text" id="url" name="url" autocomplete="off"><br>
-                        <label for="name">制作者名<span style="color: red;">*</span>：</label>
+                        <label for="name">制作者名<span style="color: red;">*</span><span id="name_x">：</span></label>
                         <input type="text" id="name" name="name" autocomplete="off"><br>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                alignCoordinates();
+                            });
+
+                            window.addEventListener('resize', function () {
+                                alignCoordinates();
+                            });
+
+                            function alignCoordinates() {
+                                var url_x = document.getElementById('url_x');
+                                var name_x = document.getElementById('name_x');
+                                var urlXCoordinate = url_x.getBoundingClientRect().left;
+                                name_x.style.left = urlXCoordinate + 'px';
+                            }
+                        </script>
                         <label for="rank">最終順位<span style="color: red;">*</span>：</label>
                         <input type="text" id="rank" name="rank" autocomplete="off">
                         <script>
