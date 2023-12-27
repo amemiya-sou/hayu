@@ -23,23 +23,22 @@
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
 
-    <header>
-        <h1>
+    <div id="top">
+        <header>
             <a href="index.php">
-                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" class="header_img">
+                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" id="header_img">
             </a>
-        </h1>
-        <form id="search-bar" action="https://matomeyapoke.com/" method="get">
-            <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
-                placeholder="ポケモン名で検索">
-            <button type="submit" id="search-icon">
-                <i class="fas fa-search fa-fw"></i>
-            </button>
-        </form>
-    </header>
+            <form id="search-bar" action="search.php" method="get">
+                <input type="text" id="search-input" autocomplete="off" placeholder="ポケモン名で検索">
+                <button type="submit" id="search-icon">
+                    <i class="fas fa-search fa-fw"></i>
+                </button>
+            </form>
+        </header>
+    </div>
 
-    <div class="fruit-tart">
-        <div class="tart">
+    <div id="container">
+        <div class="content">
             <h2>構築収集フォーム</h2>
             <div class="package">
                 <div id="form">
