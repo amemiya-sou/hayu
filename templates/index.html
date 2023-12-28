@@ -88,13 +88,13 @@
                         <label for="name">制作者名<span style="color: red;">*</span><span id="name_x">：</span></label>
                         <input type="text" id="name" name="name" autocomplete="off"><br>
                         <script>
-                            document.addEventListener('DOMContentLoaded', function() {
+                            document.addEventListener('DOMContentLoaded', function () {
                                 var urlElement = document.getElementById('url');
                                 var nameElement = document.getElementById('name');
                                 var urlX = urlElement.getBoundingClientRect().left;
                                 var nameX = nameElement.getBoundingClientRect().left;
                                 var offsetX = nameX - urlX;
-                                
+
                                 // id="url_x"の位置をid="name_x"に合わせる
                                 var urlXElement = document.getElementById('url_x');
                                 urlXElement.style.marginLeft = offsetX + 'px';
@@ -103,6 +103,18 @@
                         <label for="rank">最終順位<span style="color: red;">*</span>：</label>
                         <input type="text" id="rank" name="rank" autocomplete="off">
                         <label>位</label><br>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var rankInput = document.getElementById('rank');
+                                rankInput.addEventListener('input', function (event) {
+                                    var inputValue = event.target.value;
+                                    var convertedValue = inputValue.replace(/[０-９]/g, function (s) {
+                                        return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
+                                    });
+                                    rankInput.value = convertedValue;
+                                });
+                            });
+                        </script>
                         <script>
                             for (let i = 1; i <= 6; i++) {
                                 document.write(`
