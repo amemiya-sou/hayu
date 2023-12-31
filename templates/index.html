@@ -25,11 +25,12 @@
 
     <div id="top">
         <header>
-            <a href="index.php">
-                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" id="header_img">
+            <a href="https://matomeyapoke.com/">
+                <img src="{{ url_for('static', filename='kumo.png') }}" id="header-img">
             </a>
             <form id="search-bar" action="search.php" method="get">
-                <input type="text" id="search-input" autocomplete="off" placeholder="ポケモン名で検索">
+                <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
+                    placeholder="ポケモン名で検索">
                 <button type="submit" id="search-icon">
                     <i class="fas fa-search fa-fw"></i>
                 </button>
@@ -37,16 +38,15 @@
         </header>
     </div>
 
-    <div id="container">
-        <div class="content">
-            <h2>構築収集フォーム</h2>
-            <div class="package">
-                <div id="form">
-                    <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
-                    <p><span>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。精度は100%ではないため適宜調整してください。</span>
+    <div class="content center-content">
+        <h2>構築投稿フォーム</h2>
+        <div class="package">
+            <ul class="text-links">
+                <li>このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。<br><br>
+                    レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。精度は100%ではないため適宜調整してください。<br><br>
                     <form method="post" enctype="multipart/form-data" id="upload-form">
                         <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
-                    </form>
+                    </form><br>
                     <script>
                         document.getElementById('file-input').addEventListener('change', function () {
                             showLoading();
@@ -56,7 +56,6 @@
                             document.getElementById('loading-overlay').style.display = 'flex';
                         }
                     </script>
-                    </p>
                     <div style="color: red;">*は必須項目です。</div>
                     <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php"
                         method="post">
@@ -127,11 +126,16 @@
                       `);
                             }
                         </script>
-                        <input type="submit" value="送信" class="botan">
+                        <input type="submit" value="投稿する" class="post">
                     </form>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
+    </div>
+    <div id="bottom">
+        <footer>
+            <p>構築まとめ屋。</p>
+        </footer>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

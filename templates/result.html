@@ -25,11 +25,12 @@
 
     <div id="top">
         <header>
-            <a href="index.php">
-                <img src="{{ url_for('static', filename='matomeyapoke.png') }}" id="header_img">
+            <a href="https://matomeyapoke.com/">
+                <img src="{{ url_for('static', filename='kumo.png') }}" id="header-img">
             </a>
             <form id="search-bar" action="search.php" method="get">
-                <input type="text" id="search-input" autocomplete="off" placeholder="ポケモン名で検索">
+                <input type="text" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
+                    placeholder="ポケモン名で検索">
                 <button type="submit" id="search-icon">
                     <i class="fas fa-search fa-fw"></i>
                 </button>
@@ -37,16 +38,15 @@
         </header>
     </div>
 
-    <div id="container">
-        <div class="content">
-            <h2>構築収集フォーム</h2>
-            <div class="package">
-                <div id="form">
-                    <p>このページでは各シーズンの構築記事を収集しています。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。</p>
-                    <p><span>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。精度は100%ではないため適宜調整してください。</span>
+    <div class="content center-content">
+        <h2>構築投稿フォーム</h2>
+        <div class="package">
+            <ul class="text-links">
+                <li>このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築は「その他のフォーム」から投稿してください。<br><br>
+                    レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。精度は100%ではないため適宜調整してください。<br><br>
                     <form method="post" enctype="multipart/form-data" id="upload-form">
                         <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
-                    </form>
+                    </form><br>
                     <script>
                         document.getElementById('file-input').addEventListener('change', function () {
                             showLoading();
@@ -56,9 +56,9 @@
                             document.getElementById('loading-overlay').style.display = 'flex';
                         }
                     </script>
-                    </p>
                     <div style="color: red;">*は必須項目です。</div>
-                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
+                    <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php"
+                        method="post">
                         <input type="text" id="approval" name="approval" style="display: none;" value="false">
                         <label for="url">ルール<span style="color: red;">*</span>：</label>
                         <label><input type="checkbox" name="rule[]" class="check" value="single"
@@ -87,13 +87,13 @@
                         <label for="name">制作者名<span style="color: red;">*</span><span id="name_x">：</span></label>
                         <input type="text" id="name" name="name" autocomplete="off"><br>
                         <script>
-                            document.addEventListener('DOMContentLoaded', function() {
+                            document.addEventListener('DOMContentLoaded', function () {
                                 var urlElement = document.getElementById('url');
                                 var nameElement = document.getElementById('name');
                                 var urlX = urlElement.getBoundingClientRect().left;
                                 var nameX = nameElement.getBoundingClientRect().left;
                                 var offsetX = nameX - urlX;
-                                
+
                                 // id="url_x"の位置をid="name_x"に合わせる
                                 var urlXElement = document.getElementById('url_x');
                                 urlXElement.style.marginLeft = offsetX + 'px';
@@ -118,18 +118,18 @@
                             <img src="data:image/jpeg;base64,{{ img_base64 }}" alt="アップロードされた画像">
                         </div>
                         <label for="pokemon1">ポケモン１：</label>
-                        <input type="search" class="pokemon_input" id="pokemon1" name="pokemon1" autocomplete="off" placeholder="ポケモン名"
-                            value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
+                        <input type="search" class="pokemon_input" id="pokemon1" name="pokemon1" autocomplete="off"
+                            placeholder="ポケモン名" value="{{ closest_words[0] }}" oninput="changeColor('pokemon1')"
                             onfocus="showPokemonSuggestions('pokemon1')" onblur="myBlurFunction('pokemon1')">
                         <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div><br>
 
                         <label style="visibility: hidden;">ポケモン１：</label>
-                        <input type="search" class="item_input" id="item1" name="item1" autocomplete="off" placeholder="もちもの"
-                            value="{{ closest_words[1] }}" oninput="changeColor('item1')"><br>
+                        <input type="search" class="item_input" id="item1" name="item1" autocomplete="off"
+                            placeholder="もちもの" value="{{ closest_words[1] }}" oninput="changeColor('item1')"><br>
 
                         <label style="visibility: hidden;">ポケモン１：</label>
-                        <input type="search" class="tera_input" id="tera1" name="tera1" autocomplete="off" placeholder="テラスタル"
-                            value="{{ message1 }}"><br>
+                        <input type="search" class="tera_input" id="tera1" name="tera1" autocomplete="off"
+                            placeholder="テラスタル" value="{{ message1 }}"><br>
 
                         <label for="pokemon2">ポケモン２：</label>
                         <input type="search" class="pokemon_input" id="pokemon2" name="pokemon2" autocomplete="off"
@@ -184,8 +184,8 @@
                             value="{{ closest_words[9] }}" oninput="changeColor('item5')"><br>
 
                         <label style="visibility: hidden;">ポケモン５：</label>
-                        <input type="search" class="tera_input" class="tera_input" id="tera5" name="tera5" autocomplete="off"
-                            value="{{ message5 }}"><br>
+                        <input type="search" class="tera_input" class="tera_input" id="tera5" name="tera5"
+                            autocomplete="off" value="{{ message5 }}"><br>
 
                         <label for="pokemon6">ポケモン６：</label>
                         <input type="search" class="pokemon_input" id="pokemon6" name="pokemon6" autocomplete="off"
@@ -203,16 +203,19 @@
                         <input type="text" id="img_src" name="img_src" style="display: none;"
                             value="data:image/jpeg;base64,{{ img_base64 }}">
 
-                        <input type="submit" value="送信" class="botan">
-
+                        <input type="submit" value="投稿する" class="post">
                     </form>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
+    </div>
+    <div id="bottom">
+        <footer>
+            <p>構築まとめ屋。</p>
+        </footer>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='form_change.js') }}"></script>
-
 </body>
 
 </html>
