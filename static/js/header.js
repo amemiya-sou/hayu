@@ -1,0 +1,1 @@
+document.getElementById("header-content").innerHTML = "<a href='http://www.yahoo.co.jp'>Yahoo!<\/a>";
