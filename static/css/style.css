@@ -21,6 +21,7 @@
   cursor: pointer;
   line-height: 20px;
   text-align: center;
+  margin-top: 16px;
 }
 
 #season,
@@ -53,7 +54,7 @@
 .url,
 .name,
 .rule {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 #file-input {
@@ -88,7 +89,7 @@
 }
 
 .party_img {
-  margin: 5px 0px;
+  margin: 16px 0px;
 }
 
 #party_form {
@@ -101,7 +102,7 @@
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .poke_input,
@@ -111,7 +112,6 @@
   outline: none;
   width: 100%;
   height: 30px;
-  box-sizing: border-box;
   font-size: 14px;
   padding: 0px 5px;
 }
@@ -142,6 +142,7 @@
 
 @media screen and (max-width: 500px) {
   .poke_input {
+    height: 31px;
     border-right: none;
     border-bottom: 1px solid #ccc;
     border-top-right-radius: 5px;

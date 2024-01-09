@@ -364,7 +364,7 @@ def preprocess_image(img, percent_boxes):
 
         # 二値化
         cropped_img = cropped_img.convert("L")
-        threshold = 120
+        threshold = 130
         cropped_img = cropped_img.point(lambda p: p < threshold and 255)
 
         # 処理された画像をリストに追加
