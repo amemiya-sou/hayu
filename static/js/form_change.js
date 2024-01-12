@@ -57,7 +57,6 @@ function checkInitialValue(elementId) {
         inputValue === "ジュナイパー" ||
         inputValue === "オドリドリ" ||
         inputValue === "ルガルガン" ||
-        inputValue === "ストリンダー" ||
         inputValue === "イエッサン" ||
         inputValue === "イダイトウ" ||
         inputValue === "ラブトロス" ||
@@ -65,7 +64,9 @@ function checkInitialValue(elementId) {
         inputValue === "コレクレー" ||
         inputValue === "オーガポン" ||
         inputValue === "ガチグマ" ||
-        inputValue === "ウーラオス") {
+        inputValue === "ウーラオス" ||
+        inputValue === "ナッシー" ||
+        inputValue === "ニャオニクス") {
         inputElement.classList.add("red-background");
     }
 }
@@ -166,8 +167,6 @@ function showPokemonSuggestions(elementId) {
             suggestions = ["オドリドリ(めらめら)", "オドリドリ(ふらふら)", "オドリドリ(まいまい)", "オドリドリ(ぱちぱち)"];
         } else if (inputValue === "ルガルガン") {
             suggestions = ["ルガルガン(まひる)", "ルガルガン(まよなか)", "ルガルガン(たそがれ)"];
-        } else if (inputValue === "ストリンダー") {
-            suggestions = ["ストリンダー(ハイ)", "ストリンダー(ハイ)"];
         } else if (inputValue === "イエッサン") {
             suggestions = ["イエッサン♂", "イエッサン♀"];
         } else if (inputValue === "イダイトウ") {
@@ -181,9 +180,13 @@ function showPokemonSuggestions(elementId) {
         } else if (inputValue === "ガチグマ") {
             suggestions = ["ガチグマ", "ガチグマ(アカツキ)"];
         } else if (inputValue === "オーガポン") {
-            suggestions = ["オーガポン", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
+            suggestions = ["オーガポン(みどり)", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
         } else if (inputValue === "ウーラオス") {
             suggestions = ["ウーラオス(いちげき)", "ウーラオス(れんげき)"];
+        } else if (inputValue === "ナッシー") {
+            suggestions = ["ナッシー", "ナッシー(アローラ)"];
+        } else if (inputValue === "ニャオニクス") {
+            suggestions = ["ニャオニクス♂", "ニャオニクス♀"];
         }
 
         //候補を表示する場所を定義する

@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <title>構築まとめ屋。</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/destyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animation.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
@@ -171,7 +171,7 @@
         <div style="color: red; margin-bottom: 16px;">*は必須項目です。</div>
         <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
             <input type="text" id="approval" name="approval" style="display: none;" value="false">
-            
+
             <div class="rule">
                 <label for="rule">ルール<span style="color: red;">*</span></label>
                 <select name="rule" id="rule">
@@ -191,18 +191,18 @@
 
             <div class="url">
                 <label for="url">記事URL<span style="color: red;">*</span></label>
-                <input type="text" id="url" name="url" autocomplete="off">
+                <input type="search" id="url" name="url" autocomplete="off">
             </div>
 
             <div class="name">
                 <label for="name">制作者名<span style="color: red;">*</span><span id="name_x"></span></label>
-                <input type="text" id="name" name="name" autocomplete="off">
+                <input type="search" id="name" name="name" autocomplete="off">
             </div>
 
             <div class="ranking">
-                <label for="rank">最終順位<span style="color: red;">*</span></label><br>
-                <input type="text" id="ranking" name="rank" autocomplete="off">
-                <label>位</label>
+                <label for="ranking">最終順位<span style="color: red;">*</span></label><br>
+                <input type="search" id="ranking" name="rank" autocomplete="off">
+                <label for="ranking">位</label>
             </div>
 
             <div id="pokemon-input-content"></div>

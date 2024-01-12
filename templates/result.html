@@ -16,6 +16,16 @@
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_tera.js') }}"></script>
+    <style>
+        .ui-menu .ui-menu-item-wrapper {
+            position: relative;
+            padding: 8px 1em 8px .4em;
+        }
+
+        .suggestions {
+            margin-top: 29px;
+        }
+    </style>
 </head>
 
 <body>
@@ -191,18 +201,18 @@
 
             <div class="url">
                 <label for="url">記事URL<span style="color: red;">*</span></label>
-                <input type="text" id="url" name="url" autocomplete="off">
+                <input type="search" id="url" name="url" autocomplete="off">
             </div>
 
             <div class="name">
                 <label for="name">制作者名<span style="color: red;">*</span><span id="name_x"></span></label>
-                <input type="text" id="name" name="name" autocomplete="off">
+                <input type="search" id="name" name="name" autocomplete="off">
             </div>
 
             <div class="ranking">
-                <label for="rank">最終順位<span style="color: red;">*</span></label><br>
-                <input type="text" id="ranking" name="rank" autocomplete="off">
-                <label>位</label>
+                <label for="ranking">最終順位<span style="color: red;">*</span></label><br>
+                <input type="search" id="ranking" name="rank" autocomplete="off">
+                <label for="ranking">位</label>
             </div>
 
 

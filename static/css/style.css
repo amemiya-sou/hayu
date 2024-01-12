@@ -100,7 +100,6 @@
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 8px;
 }
@@ -112,6 +111,7 @@
   outline: none;
   width: 100%;
   height: 30px;
+  box-sizing: border-box;
   font-size: 14px;
   padding: 0px 5px;
 }
@@ -123,18 +123,21 @@
 }
 
 .poke_input {
-  border-right: 1px solid #ccc;
+  border: 1px solid #ccc;
+  border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   flex: 1;
 }
 
 .tool_input {
-  border-right: 1px solid #ccc;
+  border: 1px solid #ccc;
+  border-right: none;
   flex: 1;
 }
 
 .teras_input {
+  border: 1px solid #ccc;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   flex: 1;
@@ -142,19 +145,38 @@
 
 @media screen and (max-width: 500px) {
   .poke_input {
-    height: 31px;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 0px;
-    flex: initial;
+      border-right: 1px solid #ccc;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 0px;
+      flex: initial;
   }
 
   .tool_input {
-    border-bottom-left-radius: 5px;
+      border-top: none;
+      border-bottom-left-radius: 5px;
   }
 
   .teras_input {
-    border-top-right-radius: 0px;
+      border-top: none;
+      border-top-right-radius: 0px;
   }
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  position: relative;
+  padding: 8px 1em 8px .4em;
+}
+
+#file-input {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#file-input::file-selector-button {
+  border: #ccc 1px solid;
+  padding: 0px 8px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
 }
