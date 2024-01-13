@@ -199,6 +199,7 @@ function showPokemonSuggestions(elementId) {
             var suggestionElement = document.createElement("div");
             suggestionElement.className = "suggestion";
             suggestionElement.textContent = suggestion;
+
             //候補を選んだ時の処理
             suggestionElement.onclick = function () {
                 document.getElementById(elementId).classList.replace("red-background", "sakuraino");

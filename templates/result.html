@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>構築まとめ屋。</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/destyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
@@ -16,6 +16,19 @@
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_tera.js') }}"></script>
+    <script>
+        function setPokemonWidth() {
+            for (var i = 1; i <= 6; i++) {
+                var pokemonId = 'pokemon' + i;
+                var suggestionsId = pokemonId + 'suggestions';
+
+                var pokemonWidth = document.getElementById(pokemonId).offsetWidth;
+                document.getElementById(suggestionsId).style.width = pokemonWidth + 'px';
+            }
+        }
+        window.addEventListener('load', setPokemonWidth);
+        window.addEventListener('resize', setPokemonWidth);
+    </script>
     <style>
         .ui-menu .ui-menu-item-wrapper {
             position: relative;
