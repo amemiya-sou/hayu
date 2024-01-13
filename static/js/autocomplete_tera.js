@@ -32,6 +32,7 @@ $(function () {
             // 最大4つまでの候補を表示
             response(matchingItems.slice(0, 4));
         },
+        position: { my: "left top-1", at: "left bottom", collision: "none" },
         delay: 100,
         autoFocus: true,
         select: function (event, ui) {

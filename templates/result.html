@@ -30,6 +30,13 @@
         window.addEventListener('resize', setPokemonWidth);
     </script>
     <style>
+        .ui-widget-content {
+            margin-top: 100px !important;
+            border: 1px solid #666 !important;
+            border-top: 1px solid #ccc !important;
+            padding-top: 1px!important;
+        }
+
         .ui-menu .ui-menu-item-wrapper {
             position: relative;
             padding: 8px 1em 8px .4em;
@@ -37,6 +44,11 @@
 
         .suggestions {
             margin-top: 29px;
+        }
+
+        .red-background {
+            background-color: #ff7a7a;
+            border: 1px solid #aaa;
         }
     </style>
 </head>
@@ -184,7 +196,7 @@
     <div class="content">
         <ul>
             <li style="margin-bottom: 16px;">このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築はその他のフォームから投稿してください。</li>
-            <li style="margin-bottom: 16px;">レンタル画像からポケモン名などを自動で読み取れます。</li>
+            <li style="margin-bottom: 16px;">レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</li>
         </ul>
 
         <form method="post" enctype="multipart/form-data" id="upload-form">

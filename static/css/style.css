@@ -1,3 +1,7 @@
+select {
+  font-size: 14px;
+}
+
 .content {
   width: calc(100% - 32px);
   max-width: 630px;
@@ -61,14 +65,11 @@
   margin-bottom: 16px;
 }
 
-.red-background {
-  background-color: #ff7a7a;
-}
-
 .suggestions {
   position: absolute;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #666;
+  border-top: 1px solid #ccc;
   overflow-y: auto;
 }
 
