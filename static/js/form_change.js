@@ -12,7 +12,6 @@ function checkInitialValue(elementId) {
     var inputValue = document.getElementById(elementId).value;
     var inputElement = document.getElementById(elementId);
     if (inputValue === "" ||
-        inputValue === "ロトム" ||
         inputValue === "ライチュウ" ||
         inputValue === "サンド" ||
         inputValue === "サンドパン" ||
@@ -33,6 +32,7 @@ function checkInitialValue(elementId) {
         inputValue === "ベトベトン" ||
         inputValue === "ビリリダマ" ||
         inputValue === "マルマイン" ||
+        inputValue === "ナッシー" ||
         inputValue === "マタドガス" ||
         inputValue === "ケンタロス" ||
         inputValue === "フリーザー" ||
@@ -43,30 +43,46 @@ function checkInitialValue(elementId) {
         inputValue === "ヤドキング" ||
         inputValue === "ハリーセン" ||
         inputValue === "ニューラ" ||
+        inputValue === "デオキシス" ||
+        inputValue === "カラナクシ" ||
+        inputValue === "トリトドン" ||
+        inputValue === "ロトム" ||
+        inputValue === "ディアルガ" ||
+        inputValue === "パルキア" ||
+        inputValue === "ギラティナ" ||
+        inputValue === "シェイミ" ||
         inputValue === "ダイケンキ" ||
         inputValue === "ドレディア" ||
+        inputValue === "バスラオ" ||
         inputValue === "ゾロア" ||
         inputValue === "ゾロアーク" ||
+        inputValue === "シキジカ" ||
+        inputValue === "メブキジカ" ||
         inputValue === "ウォーグル" ||
         inputValue === "トルネロス" ||
         inputValue === "ボルトロス" ||
         inputValue === "ランドロス" ||
+        inputValue === "ニャオニクス" ||
         inputValue === "ヌメイル" ||
         inputValue === "ヌメルゴン" ||
         inputValue === "クレベース" ||
         inputValue === "ジュナイパー" ||
         inputValue === "オドリドリ" ||
         inputValue === "ルガルガン" ||
+        inputValue === "ネクロズマ" ||
+        inputValue === "ストリンダー" ||
         inputValue === "イエッサン" ||
+        inputValue === "ウーラオス" ||
+        inputValue === "バドレックス" ||
+        inputValue === "ガチグマ" ||
         inputValue === "イダイトウ" ||
         inputValue === "ラブトロス" ||
         inputValue === "パフュートン" ||
+        inputValue === "イッカネズミ" ||
+        inputValue === "イキリンコ" ||
+        inputValue === "シャリタツ" ||
         inputValue === "コレクレー" ||
-        inputValue === "オーガポン" ||
-        inputValue === "ガチグマ" ||
-        inputValue === "ウーラオス" ||
-        inputValue === "ナッシー" ||
-        inputValue === "ニャオニクス") {
+        inputValue === "オーガポン") {
         inputElement.classList.add("red-background");
     }
 }
@@ -77,9 +93,7 @@ function showPokemonSuggestions(elementId) {
         //内容によって表示する候補を格納
         var inputValue = inputElement.value;
         var suggestions = [];
-        if (inputValue === "ロトム") {
-            suggestions = ["ロトム", "ロトム(みず)", "ロトム(ほのお)", "ロトム(くさ)", "ロトム(ひこう)", "ロトム(こおり)"];
-        } else if (inputValue === "ライチュウ") {
+        if (inputValue === "ライチュウ") {
             suggestions = ["ライチュウ", "ライチュウ(アローラ)"];
         } else if (inputValue === "サンド") {
             suggestions = ["サンド", "サンド(アローラ)"];
@@ -119,6 +133,8 @@ function showPokemonSuggestions(elementId) {
             suggestions = ["ビリリダマ", "ビリリダマ(ヒスイ)"];
         } else if (inputValue === "マルマイン") {
             suggestions = ["マルマイン", "マルマイン(ヒスイ)"];
+        } else if (inputValue === "ナッシー") {
+            suggestions = ["ナッシー", "ナッシー(アローラ)"];
         } else if (inputValue === "マタドガス") {
             suggestions = ["マタドガス", "マタドガス(ガラル)"];
         } else if (inputValue === "ケンタロス") {
@@ -139,14 +155,36 @@ function showPokemonSuggestions(elementId) {
             suggestions = ["ハリーセン", "ハリーセン(ヒスイ)"];
         } else if (inputValue === "ニューラ") {
             suggestions = ["ニューラ", "ニューラ(ヒスイ)"];
+        } else if (inputValue === "デオキシス") {
+            suggestions = ["デオキシス(ノーマル)", "デオキシス(アタック)", "デオキシス(ディフェンス)", "デオキシス(スピード)"];
+        } else if (inputValue === "カラナクシ") {
+            suggestions = ["カラナクシ(ピンク)", "カラナクシ(水色)"];
+        } else if (inputValue === "トリトドン") {
+            suggestions = ["トリトドン(ピンク)", "トリトドン(水色)"];
+        } else if (inputValue === "ロトム") {
+            suggestions = ["ロトム", "ヒートロトム", "ウォッシュロトム", "フロストロトム", "スピンロトム", "カットロトム"];
+        } else if (inputValue === "ディアルガ") {
+            suggestions = ["ディアルガ", "ディアルガ(オリジン)"];
+        } else if (inputValue === "パルキア") {
+            suggestions = ["パルキア", "パルキア(オリジン)"];
+        } else if (inputValue === "ギラティナ") {
+            suggestions = ["ギラティナ(アナザー)", "ギラティナ(オリジン)"];
+        } else if (inputValue === "シェイミ") {
+            suggestions = ["シェイミ(ランド)", "シェイミ(スカイ)"];
         } else if (inputValue === "ダイケンキ") {
             suggestions = ["ダイケンキ", "ダイケンキ(ヒスイ)"];
         } else if (inputValue === "ドレディア") {
             suggestions = ["ドレディア", "ドレディア(ヒスイ)"];
+        } else if (inputValue === "バスラオ") {
+            suggestions = ["バスラオ(赤すじ)", "バスラオ(青すじ)", "バスラオ(白すじ)"];
         } else if (inputValue === "ゾロア") {
             suggestions = ["ゾロア", "ゾロア(ヒスイ)"];
         } else if (inputValue === "ゾロアーク") {
             suggestions = ["ゾロアーク", "ゾロアーク(ヒスイ)"];
+        } else if (inputValue === "シキジカ") {
+            suggestions = ["シキジカ(春)", "シキジカ(夏)", "シキジカ(秋)", "シキジカ(冬)"];
+        } else if (inputValue === "メブキジカ") {
+            suggestions = ["メブキジカ(春)", "メブキジカ(夏)", "メブキジカ(秋)", "メブキジカ(冬)"];
         } else if (inputValue === "ウォーグル") {
             suggestions = ["ウォーグル", "ウォーグル(ヒスイ)"];
         } else if (inputValue === "トルネロス") {
@@ -155,6 +193,8 @@ function showPokemonSuggestions(elementId) {
             suggestions = ["ボルトロス(化身)", "ボルトロス(霊獣)"];
         } else if (inputValue === "ランドロス") {
             suggestions = ["ランドロス(化身)", "ランドロス(霊獣)"];
+        } else if (inputValue === "ニャオニクス") {
+            suggestions = ["ニャオニクス♂", "ニャオニクス♀"];
         } else if (inputValue === "ヌメイル") {
             suggestions = ["ヌメイル", "ヌメイル(ヒスイ)"];
         } else if (inputValue === "ヌメルゴン") {
@@ -167,26 +207,34 @@ function showPokemonSuggestions(elementId) {
             suggestions = ["オドリドリ(めらめら)", "オドリドリ(ふらふら)", "オドリドリ(まいまい)", "オドリドリ(ぱちぱち)"];
         } else if (inputValue === "ルガルガン") {
             suggestions = ["ルガルガン(まひる)", "ルガルガン(まよなか)", "ルガルガン(たそがれ)"];
+        } else if (inputValue === "ネクロズマ") {
+            suggestions = ["ネクロズマ", "ネクロズマ(日食)", "ネクロズマ(月食)"];
+        } else if (inputValue === "ストリンダー") {
+            suggestions = ["ストリンダー(ハイ)", "ストリンダー(ロー)"];
         } else if (inputValue === "イエッサン") {
             suggestions = ["イエッサン♂", "イエッサン♀"];
+        } else if (inputValue === "ウーラオス") {
+            suggestions = ["ウーラオス(いちげき)", "ウーラオス(れんげき)"];
+        } else if (inputValue === "バドレックス") {
+            suggestions = ["バドレックス", "バドレックス(白)", "バドレックス(黒)"];
+        } else if (inputValue === "ガチグマ") {
+            suggestions = ["ガチグマ", "ガチグマ(アカツキ)"];
         } else if (inputValue === "イダイトウ") {
             suggestions = ["イダイトウ♂", "イダイトウ♀"];
         } else if (inputValue === "ラブトロス") {
             suggestions = ["ラブトロス(化身)", "ラブトロス(霊獣)"];
         } else if (inputValue === "パフュートン") {
             suggestions = ["パフュートン♂", "パフュートン♀"];
+        } else if (inputValue === "イッカネズミ") {
+            suggestions = ["イッカネズミ(3びき)", "イッカネズミ(4ひき)"];
+        } else if (inputValue === "イキリンコ") {
+            suggestions = ["イキリンコ(グリーン)", "イキリンコ(ブルー)", "イキリンコ(イエロー)", "イキリンコ(ホワイト)"];
+        } else if (inputValue === "シャリタツ") {
+            suggestions = ["シャリタツ(橙色)", "シャリタツ(赤色)", "シャリタツ(黄色)"];
         } else if (inputValue === "コレクレー") {
             suggestions = ["コレクレー(はこ)", "コレクレー(とほ)"];
-        } else if (inputValue === "ガチグマ") {
-            suggestions = ["ガチグマ", "ガチグマ(アカツキ)"];
         } else if (inputValue === "オーガポン") {
             suggestions = ["オーガポン(みどり)", "オーガポン(いど)", "オーガポン(かまど)", "オーガポン(いしずえ)"];
-        } else if (inputValue === "ウーラオス") {
-            suggestions = ["ウーラオス(いちげき)", "ウーラオス(れんげき)"];
-        } else if (inputValue === "ナッシー") {
-            suggestions = ["ナッシー", "ナッシー(アローラ)"];
-        } else if (inputValue === "ニャオニクス") {
-            suggestions = ["ニャオニクス♂", "ニャオニクス♀"];
         }
 
         //候補を表示する場所を定義する
