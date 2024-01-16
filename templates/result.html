@@ -16,39 +16,10 @@
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_tera.js') }}"></script>
-    <script>
-        function setPokemonWidth() {
-            for (var i = 1; i <= 6; i++) {
-                var pokemonId = 'pokemon' + i;
-                var suggestionsId = pokemonId + 'suggestions';
-
-                var pokemonWidth = document.getElementById(pokemonId).offsetWidth;
-                document.getElementById(suggestionsId).style.width = pokemonWidth + 'px';
-            }
-        }
-        window.addEventListener('load', setPokemonWidth);
-        window.addEventListener('resize', setPokemonWidth);
-    </script>
     <style>
-        .ui-widget-content {
-            margin-top: 100px !important;
-            border: 1px solid #666 !important;
-            border-top: 1px solid #ccc !important;
-            padding-top: 1px!important;
-        }
-
         .ui-menu .ui-menu-item-wrapper {
             position: relative;
             padding: 8px 1em 8px .4em;
-        }
-
-        .suggestions {
-            margin-top: 29px;
-        }
-
-        .red-background {
-            background-color: #ff7a7a;
-            border: 1px solid #aaa;
         }
     </style>
 </head>
@@ -62,7 +33,7 @@
     <div class="overlay"></div>
     <div id="top">
         <header>
-            <a href="index.php">
+            <a href="https://matomeyapoke.com/">
                 <img src="{{ url_for('static', filename='img/flat.png') }}" id="header-img">
             </a>
             <button id="menuButton"><i class="fas fa-bars"></i></button>
@@ -70,7 +41,7 @@
     </div>
     <div id="hamburgerMenu">
         <span id="closeButton">×</span>
-        <form action="search.php" method="get">
+        <form action="https://matomeyapoke.com/search.php" method="get">
             <div class="rule-container" style="margin-left: 16px;">
                 <input type='checkbox' name='rule[]' value='single' id='single' style='margin-bottom: 4px;'>
                 <label for='single' style='margin-bottom: 2px; margin-left: 2px;'>シングル</label>
@@ -90,7 +61,7 @@
             <h3>記事検索</h3>
             <ul>
                 <li>
-                    <a href="search.php">
+                    <a href="https://matomeyapoke.com/search.php">
                         <span class="chevron-right">
                             <i class="fas fa-chevron-right"></i>
                         </span>
@@ -194,21 +165,25 @@
     </div>
 
     <div class="content">
-        <ul>
-            <li style="margin-bottom: 16px;">このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築はその他のフォームから投稿してください。</li>
-            <li style="margin-bottom: 16px;">レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</li>
-        </ul>
+        <div>このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築はその他のフォームから投稿してください。</div>
+        <div>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</div>
 
-        <form method="post" enctype="multipart/form-data" id="upload-form">
-            <input type="file" name="file" accept=".png, .jpg, .jpeg" id="file-input">
-        </form>
+        <div>
+            <form method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" name="file" id="file-input" accept=".png, .jpg, .jpeg">
+            </form>
+        </div>
 
-        <div style="color: red; margin-bottom: 16px;">*は必須項目です。</div>
         <form id="party_form" action="https://matomeyapoke.com/php/database/save_to_database.php" method="post">
+
             <input type="text" id="approval" name="approval" style="display: none;" value="false">
 
-            <div class="rule">
-                <label for="rule">ルール<span style="color: red;">*</span></label>
+            <div>
+                <span>*は必須項目です。</span>
+            </div>
+
+            <div>
+                <label for="rule">ルール<span>*</span></label>
                 <select name="rule" id="rule">
                     <option value="">-----</option>
                     <option value="single">シングル</option>
@@ -216,32 +191,31 @@
                 </select>
             </div>
 
-            <div class="season">
-                <label for="season">シーズン<span style="color: red;">*</span></label>
+            <div>
+                <label for="season">シーズン<span>*</span></label>
                 <select name="season" id="season">
                     <option value="">-----</option>
                     <script src="{{ url_for('static', filename='js/season.js') }}"></script>
                 </select>
             </div>
 
-            <div class="url">
-                <label for="url">記事URL<span style="color: red;">*</span></label>
+            <div>
+                <label for="url">記事URL<span>*</span></label>
                 <input type="search" id="url" name="url" autocomplete="off">
             </div>
 
-            <div class="name">
-                <label for="name">制作者名<span style="color: red;">*</span><span id="name_x"></span></label>
+            <div>
+                <label for="name">制作者名<span>*</span><span id="name_x"></span></label>
                 <input type="search" id="name" name="name" autocomplete="off">
             </div>
 
-            <div class="ranking">
-                <label for="ranking">最終順位<span style="color: red;">*</span></label><br>
+            <div>
+                <label for="ranking">最終順位<span>*</span></label><br>
                 <input type="search" id="ranking" name="rank" autocomplete="off">
                 <label for="ranking">位</label>
             </div>
 
-
-            <div class="party_img">
+            <div>
                 <img src="data:image/jpeg;base64,{{ img_base64 }}" alt="アップロードされた画像">
             </div>
 
@@ -320,7 +294,8 @@
             <input type="text" id="img_src" name="img_src" style="display: none;"
                 value="data:image/jpeg;base64,{{ img_base64 }}">
 
-            <input type="submit" value="投稿する" class="post">
+            <input type="submit" id="post" value="構築を投稿する">
+
         </form>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

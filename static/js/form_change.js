@@ -84,6 +84,14 @@ function checkInitialValue(elementId) {
         inputValue === "コレクレー" ||
         inputValue === "オーガポン") {
         inputElement.classList.add("red-background");
+        disableAutocomplete(inputElement);
+    }
+}
+
+function disableAutocomplete(inputElement) {
+    if (typeof $ !== 'undefined' && $.ui && $.ui.autocomplete) {
+        $(inputElement).autocomplete("disable");
+        inputElement.setAttribute("autocomplete", "off");
     }
 }
 
@@ -256,10 +264,6 @@ function showPokemonSuggestions(elementId) {
                 suggestionsContainer.style.display = "none";
             };
             suggestionsContainer.appendChild(suggestionElement);
-
-            if (i === 0) {
-                suggestionElement.classList.add("selected");
-            }
         }
         if (suggestions.length > 0) {
             suggestionsContainer.style.display = "block";
@@ -304,15 +308,16 @@ function myBlurFunction(elementId) {
     setTimeout(function () {
         var suggestionsContainer = document.getElementById(elementId + "suggestions");
         suggestionsContainer.style.display = "none";
-    }, 100); // 100ミリ秒（0.1秒）の遅延を設定
+    }, 150); // 100ミリ秒（0.1秒）の遅延を設定
 }
 
-//内容が変更されたら背景を元に戻す
 function changeColor(elementId) {
     var inputValue = document.getElementById(elementId).value;
     var inputElement = document.getElementById(elementId);
     if (inputValue !== "イノ" && inputValue !== "ニナ") {
         inputElement.classList.remove("red-background");
+        $(inputElement).autocomplete("enable");
+        var suggestionsContainer = document.getElementById(elementId + "suggestions");
+        suggestionsContainer.style.display = "none";
     }
 }
-

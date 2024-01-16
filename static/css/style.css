@@ -1,79 +1,84 @@
-select {
+.content span {
+  color: red;
+}
+
+select,
+#file-input {
   font-size: 14px;
+  cursor: pointer;
+}
+
+select option {
+  padding: 50px 0px;
 }
 
 .content {
   width: calc(100% - 32px);
-  max-width: 630px;
-  margin: 0 auto;
+  max-width: 640px;
   background-color: #fff;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px auto;
   padding: 16px;
 }
 
-.post {
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-  border-width: 0;
-  background-color: #4486e3;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  line-height: 20px;
-  text-align: center;
-  margin-top: 16px;
-}
-
-#season,
-#regulation,
-#url,
-#name,
-#rule {
-  height: 32px;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  background-color: #fff;
-  padding: 0px 5px;
-}
-
-#ranking {
-  height: 32px;
-  width: 50%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  background-color: #fff;
-  padding: 0px 5px;
-}
-
-.season,
-.regulation,
-.ranking,
-.url,
-.name,
-.rule {
-  margin-bottom: 8px;
-}
-
-#file-input {
+.content div {
   margin-bottom: 16px;
 }
 
+#party_form div {
+  margin-bottom: 12px;
+}
+
+#post {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;
+  border-radius: 5px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #4486e3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#file-input::file-selector-button {
+  height: 32px;
+  padding: 0px 8px;
+  border-radius: 5px;
+  line-height: 30px;
+  border: #ccc 1px solid;
+  cursor: pointer;
+}
+
+#rule,
+#season,
+#url,
+#name,
+#ranking {
+  height: 32px;
+  width: 100%;
+  padding: 0px 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  outline: none;
+}
+
+#ranking {
+  width: 50%;
+}
+
 .suggestions {
+  margin-bottom: 0 !important;
   position: absolute;
   background-color: #fff;
-  border: 1px solid #666;
+  border: 1px solid #777;
   border-top: 1px solid #ccc;
   overflow-y: auto;
 }
 
 .suggestion {
+  margin-bottom: 0 !important;
   padding: 8px;
   cursor: pointer;
 }
@@ -83,38 +88,32 @@ select {
   color: #fff;
 }
 
-.content img {
+img {
   display: block;
   margin: 0 auto;
   width: 100%;
 }
 
-.party_img {
-  margin: 16px 0px;
-}
-
 #party_form {
-  max-width: 448px;
+  max-width: 508px;
 }
 
 .input-group {
   display: flex;
   flex-wrap: wrap;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin-bottom: 8px;
 }
 
 .poke_input,
 .tool_input,
 .teras_input {
-  border-width: 0;
-  outline: none;
   width: 100%;
-  height: 30px;
-  box-sizing: border-box;
-  font-size: 14px;
+  height: 32px;
   padding: 0px 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #ccc;
+  flex: 1;
 }
 
 .poke_input::placeholder,
@@ -124,42 +123,36 @@ select {
 }
 
 .poke_input {
-  border: 1px solid #ccc;
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  flex: 1;
 }
 
 .tool_input {
-  border: 1px solid #ccc;
   border-right: none;
-  flex: 1;
 }
 
 .teras_input {
-  border: 1px solid #ccc;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  flex: 1;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 560px) {
   .poke_input {
-      border-right: 1px solid #ccc;
-      border-top-right-radius: 5px;
-      border-bottom-left-radius: 0px;
-      flex: initial;
+    border-right: 1px solid #ccc;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0px;
+    flex: initial;
   }
 
   .tool_input {
-      border-top: none;
-      border-bottom-left-radius: 5px;
+    border-top: none;
+    border-bottom-left-radius: 5px;
   }
 
   .teras_input {
-      border-top: none;
-      border-top-right-radius: 0px;
+    border-top: none;
+    border-top-right-radius: 0px;
   }
 }
 
@@ -168,16 +161,16 @@ select {
   padding: 8px 1em 8px .4em;
 }
 
-#file-input {
-  cursor: pointer;
-  font-size: 14px;
+.ui-widget-content {
+  border: 1px solid #777 !important;
+  border-top: 1px solid #ccc !important;
 }
 
-#file-input::file-selector-button {
-  border: #ccc 1px solid;
-  padding: 0px 8px;
-  height: 32px;
-  line-height: 30px;
-  border-radius: 5px;
-  cursor: pointer;
+.suggestions {
+  margin-top: 31px;
+}
+
+.red-background {
+  background-color: #ff9393;
+  border: 1px solid #aaa;
 }

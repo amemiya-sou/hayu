@@ -274,6 +274,11 @@ $(function () {
             if (nextInput.length > 0) {
                 nextInput.focus();
             }
+        },
+        open: function(event, ui) {
+          var autocompleteWidget = $(this).autocomplete("widget");
+          var currentWidth = autocompleteWidget.width();
+          autocompleteWidget.width(currentWidth + 1);
         }
     });
 });

@@ -45,6 +45,20 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.addEventListener('click', closeMenu);
 });
 
+//フォルム候補の横幅を変える
+function setPokemonWidth() {
+    for (var i = 1; i <= 6; i++) {
+        var pokemonId = 'pokemon' + i;
+        var suggestionsId = pokemonId + 'suggestions';
+
+        var pokemonWidth = document.getElementById(pokemonId).offsetWidth;
+        var newPokemonWidth = pokemonWidth + 1;
+        document.getElementById(suggestionsId).style.width = newPokemonWidth + 'px';
+    }
+}
+window.addEventListener('load', setPokemonWidth);
+window.addEventListener('resize', setPokemonWidth);
+
 //エンターで送信させない
 $(function () {
     $("#party_form").on("keydown", function (ev) {

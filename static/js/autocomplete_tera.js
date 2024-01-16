@@ -36,17 +36,10 @@ $(function () {
         delay: 100,
         autoFocus: true,
         select: function (event, ui) {
-            // 選択されたときの処理
-            var currentInput = $(this);
-            var nextSiblingInput = currentInput.nextAll('input:first');
-            if (nextSiblingInput.length > 0) {
-                nextSiblingInput.focus();
-            } else {
-                // 同じ階層にinputがない場合は親の階層をまたいで次のinputを取得
-                var nextInput = currentInput.closest('.hana').next().find('input:first');
-                if (nextInput.length > 0) {
-                    nextInput.focus();
-                }
+            var currentInput = $(event.target);
+            var nextInput = currentInput.closest('.input-group').nextAll('.input-group').find('input[type="search"]').first();
+            if (nextInput.length > 0) {
+                nextInput.focus();
             }
         }
     });
