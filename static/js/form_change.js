@@ -11,8 +11,7 @@ window.onload = function () {
 function checkInitialValue(elementId) {
     var inputValue = document.getElementById(elementId).value;
     var inputElement = document.getElementById(elementId);
-    if (inputValue === "" ||
-        inputValue === "ライチュウ" ||
+    if (inputValue === "ライチュウ" ||
         inputValue === "サンド" ||
         inputValue === "サンドパン" ||
         inputValue === "ロコン" ||
