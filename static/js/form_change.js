@@ -1,18 +1,11 @@
 //pokemon1～6の内容をチェック
 window.onload = function () {
-    for (var i = 1; i <= 6; i++) {
-        checkInitialValue('pokemon' + i);
-        checkInitialValue('item' + i);
-        checkInitialValue('tera' + i);
-    }
+    setTimeout(function () {
+        for (var i = 1; i <= 6; i++) {
+            checkInitialValue('pokemon' + i);
+        }
+    }, 100);
 };
-document.addEventListener("DOMContentLoaded", function () {
-    for (var i = 1; i <= 6; i++) {
-        checkInitialValue('pokemon' + i);
-        checkInitialValue('item' + i);
-        checkInitialValue('tera' + i);
-    }
-});
 
 //以下のポケモンなら背景を赤くする
 function checkInitialValue(elementId) {
