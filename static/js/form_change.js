@@ -6,6 +6,13 @@ window.onload = function () {
         checkInitialValue('tera' + i);
     }
 };
+document.addEventListener("DOMContentLoaded", function () {
+    for (var i = 1; i <= 6; i++) {
+        checkInitialValue('pokemon' + i);
+        checkInitialValue('item' + i);
+        checkInitialValue('tera' + i);
+    }
+});
 
 //以下のポケモンなら背景を赤くする
 function checkInitialValue(elementId) {
