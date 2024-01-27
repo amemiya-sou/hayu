@@ -33,125 +33,100 @@
             <button id="menuButton"><i class="fas fa-bars"></i></button>
         </header>
     </div>
+
     <div id="hamburgerMenu">
         <span id="closeButton">×</span>
         <form action="https://matomeyapoke.com/search.php" method="get">
-            <div class="rule-container" style="margin-left: 16px;">
-                <input type='checkbox' name='rule[]' value='single' id='single' style='margin-bottom: 4px;'>
-                <label for='single' style='margin-bottom: 2px; margin-left: 2px;'>シングル</label>
-                <input type='checkbox' name='rule[]' value='double' id='double'
-                    style='margin-bottom: 4px; margin-left: 16px;'>
-                <label for='double' style='margin-bottom: 2px; margin-left: 2px;'>ダブル</label>
+
+            <div class="header-rule-container">
+                <div class="header-rule-check">
+                    <input type='checkbox' name='rule[]' value='single' id='single_search'>
+                    <label for='single_search'>シングル</label>
+                </div>
+                <div class="header-rule-check">
+                    <input type='checkbox' name='rule[]' value='double' id='double_search'>
+                    <label for='double_search'>ダブル</label>
+                </div>
             </div>
+
             <div id="search-bar">
-                <input type="search" id="search-input" class="pokemon_input" name="pokemon0" autocomplete="off"
+                <input type="search" id="search-input" class="pokemon_input" name="poke1" autocomplete="off"
                     placeholder="ポケモン名で検索">
                 <button type="submit" id="search-icon">
                     <i class="fas fa-search fa-fw"></i>
                 </button>
             </div>
         </form>
+
         <div class="menu-box">
-            <h3>記事検索</h3>
-            <ul>
+            <h3>シングル記事まとめ</h3>
+            <ul class="menu-links">
                 <li>
-                    <a href="https://matomeyapoke.com/search.php">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                        <span>詳細検索はこちら</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="menu-box">
-            <h3>構築投稿フォーム</h3>
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                        <span>ランクバトルの構築を投稿</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="menu-item">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                        <span>その他の構築を投稿</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="menu-box">
-            <h3>シングル記事</h3>
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=13&rule=single">
                         <span>SVシーズン13シングル上位記事</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=12&rule=single">
                         <span>SVシーズン12シングル上位記事</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=11&rule=single">
                         <span>SVシーズン11シングル上位記事</span>
                     </a>
                 </li>
             </ul>
         </div>
+
         <div class="menu-box">
-            <h3>ダブル記事</h3>
-            <ul>
+            <h3>ダブル記事まとめ</h3>
+            <ul class="menu-links">
                 <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=13&rule=double">
                         <span>SVシーズン13ダブル上位記事</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=12&rule=double">
                         <span>SVシーズン12ダブル上位記事</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
+                    <a href="https://matomeyapoke.com/season.php?season=11&rule=double">
                         <span>SVシーズン11ダブル上位記事</span>
                     </a>
                 </li>
             </ul>
         </div>
+
         <div class="menu-box">
-            <h3>問い合わせ</h3>
-            <ul>
+            <h3>構築投稿フォーム</h3>
+            <ul class="menu-links">
                 <li>
-                    <a href="inquiry.php">
-                        <span class="chevron-right">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                        <span>こちらから</span>
+                    <a href="https://pokemon-3lix.onrender.com">
+                        <span>ランクバトルの構築はこちら</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://other-mml2.onrender.com">
+                        <span>その他の構築はこちら</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-box">
+            <h3>その他</h3>
+            <ul class="menu-links">
+                <li>
+                    <a href="https://matomeyapoke.com/news.php">
+                        <span>お知らせ・更新情報</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://matomeyapoke.com/inquiry.php">
+                        <span>問い合わせ</span>
                     </a>
                 </li>
             </ul>
@@ -160,7 +135,7 @@
 
     <div class="content">
         <div>このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築は<a class="blue"
-            href="https://other-mml2.onrender.com/">その他のフォーム</a>から投稿してください。</div>
+                href="https://other-mml2.onrender.com/">その他のフォーム</a>から投稿してください。</div>
         <div>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</div>
 
         <div>

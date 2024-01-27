@@ -29,19 +29,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const overlay = document.querySelector('.overlay');
     const closeButton = document.getElementById('closeButton');
+
     function closeMenu() {
-        hamburgerMenu.style.right = '-300px';
+        hamburgerMenu.style.right = '-280px';
         overlay.style.display = 'none';
+        document.body.classList.remove('overflow-hidden');
     }
+
     menuButton.addEventListener('click', function () {
         if (hamburgerMenu.style.right === '0px') {
             closeMenu();
         } else {
             hamburgerMenu.style.right = '0px';
             overlay.style.display = 'block';
+            document.body.classList.add('overflow-hidden');
         }
     });
+
     closeButton.addEventListener('click', closeMenu);
+
     overlay.addEventListener('click', closeMenu);
 });
 
