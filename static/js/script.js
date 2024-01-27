@@ -144,7 +144,7 @@ $(document).ready(function () {
         }
 
         if (flags.rule && flags.season && flags.url && flags.name && flags.ranking && flags.red) {
-            var confirmed = confirm("入力した内容で送信しますか？");
+            var confirmed = confirm("入力した内容で投稿しますか？");
             if (!confirmed) {
                 event.preventDefault();
             }
