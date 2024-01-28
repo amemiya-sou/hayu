@@ -134,9 +134,9 @@
     </div>
 
     <div class="content">
-        <div>このページでは各シーズンの構築記事を投稿できます。シーズン途中の構築やランクバトル以外の構築は<a class="blue"
+        <div>ここでは<span class="red-bottom">最終順位が確定</span>したランクバトルの構築を投稿できます。シーズン途中の構築やランクバトル以外の構築は<a class="blue"
                 href="https://other-mml2.onrender.com/">その他のフォーム</a>から投稿してください。</div>
-        <div>レンタル画像からポケモン名などを自動で読み取れます。こちらを利用して可能な限り多くの項目に入力していただけると助かります。</div>
+        <div>レンタル画像からポケモン名などを自動で入力できます。</div>
 
         <div>
             <form method="post" enctype="multipart/form-data" id="upload-form">
@@ -149,11 +149,11 @@
             <input type="text" id="approval" name="approval" style="display: none;" value="false">
 
             <div>
-                <span>*は必須項目です。</span>
+                <span class="required">*は必須項目です。</span>
             </div>
 
             <div>
-                <label for="rule">ルール<span>*</span></label>
+                <label for="rule">ルール<span class="required">*</span></label>
                 <select name="rule" id="rule">
                     <option value="">-----</option>
                     <option value="single">シングル</option>
@@ -162,7 +162,7 @@
             </div>
 
             <div>
-                <label for="season">シーズン<span>*</span></label>
+                <label for="season">シーズン<span class="required">*</span></label>
                 <select name="season" id="season">
                     <option value="">-----</option>
                     <script src="{{ url_for('static', filename='js/season.js') }}"></script>
@@ -170,17 +170,17 @@
             </div>
 
             <div>
-                <label for="url">記事URL<span>*</span></label>
+                <label for="url">記事URL<span class="required">*</span></label>
                 <input type="search" id="url" name="url" autocomplete="off">
             </div>
 
             <div>
-                <label for="name">制作者名<span>*</span><span id="name_x"></span></label>
+                <label for="name">制作者名<span class="required">*</span><span id="name_x"></span></label>
                 <input type="search" id="name" name="name" autocomplete="off">
             </div>
 
             <div>
-                <label for="ranking">最終順位<span>*</span></label><br>
+                <label for="ranking">最終順位<span class="required">*</span></label><br>
                 <input type="search" id="ranking" name="rank" autocomplete="off">
                 <label for="ranking">位</label>
             </div>

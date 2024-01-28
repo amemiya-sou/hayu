@@ -1,5 +1,13 @@
-.content span {
+.blue {
+  color: #007fff;
+}
+
+.required {
   color: red;
+}
+
+.red-bottom {
+  background: linear-gradient(transparent 60%, #ccc 0%);
 }
 
 select,
