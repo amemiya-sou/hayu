@@ -10,8 +10,6 @@ RUN apt-get install -y tesseract-ocr-jpn
 # 作業ディレクトリを設定
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y libgl1
-
 # アプリケーションの依存関係をコピーしてインストール
 COPY requirements.txt .
 
@@ -22,4 +20,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # アプリケーションを実行
-CMD ["python", "app.py"]
+CMD ["streamlit", "run", "app.py"]
