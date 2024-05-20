@@ -89,20 +89,17 @@ $(function () {
         "おおきなタケノコ", "おだんごしんじゅ", "かおるキノコ", "きちょうなホネ",
         "きれいなハネ", "きんのたま", "しんじゅ", "すいせいのかけら",
         "ちいさなキノコ", "ちいさなタケノコ", "でかいきんのたま", "ほしのかけら",
-        "ほしのすな",
-        "いちごアメざいく", "ハートアメざいく",
-        "ベリーアメざいく", "よつばアメざいく", "おはなアメざいく", "スターアメざいく",
-        "リボンアメざいく", "ガラナツブレス", "ガラナツリース", "ふくごうきんぞく",
-        "あやしいパッチ", "マグマブースター", "エレキブースター", "プロテクター",
-        "りゅうのウロコ", "アップグレード", "こころのしずく"
+        "ほしのすな", "いちごアメざいく", "ハートアメざいく", "ベリーアメざいく",
+        "よつばアメざいく", "おはなアメざいく", "スターアメざいく", "リボンアメざいく",
+        "ガラナツブレス", "ガラナツリース", "ふくごうきんぞく", "あやしいパッチ",
+        "マグマブースター", "エレキブースター", "プロテクター", "りゅうのウロコ",
+        "アップグレード", "こころのしずく"
     ];
 
-    // ひらがなとカタカナを区別せずに前方一致検索するための関数
     function startsWithIgnoreCase(str, term) {
         return ignoreKana(str.toLowerCase()).indexOf(term) === 0;
     }
 
-    // ひらがなとカタカナを区別せずに検索するための関数
     function ignoreKana(str) {
         return str.replace(/[\u30a1-\u30f6]/g, function (match) {
             var chr = match.charCodeAt(0) - 0x60;
@@ -110,40 +107,31 @@ $(function () {
         });
     }
 
-    // Autocompleteを適用
     $(".item_input").autocomplete({
         source: function (request, response) {
-            var term = ignoreKana(request.term.toLowerCase()); // 入力された値をひらがなとカタカナを区別せずに小文字に変換
+            var term = ignoreKana(request.term.toLowerCase());
 
-            // itemListから入力に前方一致する項目を検索
             var matchingItems = $.grep(itemList, function (item) {
                 return startsWithIgnoreCase(item, term);
             });
 
-            // 最大4つまでの候補を表示
             response(matchingItems.slice(0, 4));
         },
         position: { my: "left top-1", at: "left bottom", collision: "none" },
         delay: 100,
         autoFocus: true,
         select: function (event, ui) {
-            // 選択されたときの処理
             var currentInput = $(this);
-            var nextInput = currentInput.nextAll('input:first'); // 次のinput要素を取得
+            var nextInput = currentInput.nextAll('input:first');
 
             if (nextInput.length > 0) {
                 nextInput.focus();
             }
         },
-        open: function(event, ui) {
-          var autocompleteWidget = $(this).autocomplete("widget");
-          var currentWidth = autocompleteWidget.width();
-          autocompleteWidget.width(currentWidth + 1);
+        open: function (event, ui) {
+            var autocompleteWidget = $(this).autocomplete("widget");
+            var currentWidth = autocompleteWidget.width();
+            autocompleteWidget.width(currentWidth + 1);
         }
     });
 });
-
-/*候補のフォントサイズを変更
-.ui-autocomplete {
-    font-size: 14px;
-}*/

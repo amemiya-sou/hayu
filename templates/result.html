@@ -5,23 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>構築まとめ屋。</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/destyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animation.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_tera.js') }}"></script>
-    <style>
-        .ui-menu .ui-menu-item-wrapper {
-            position: relative;
-            padding: 8px 1em 8px .4em;
-        }
-    </style>
+    <script src="{{ url_for('static', filename='js/autocomplete_move.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/season.js') }}"></script>
 </head>
 
 <body>
@@ -30,119 +26,16 @@
         xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
-    <div class="overlay"></div>
     <div id="top">
         <header>
             <a href="https://matomeyapoke.com/">
-                <img src="{{ url_for('static', filename='img/flat.png') }}" id="header-img">
+                <img src="{{ url_for('static', filename='img/管理用ページ。.png') }}" id="header-img">
             </a>
-            <button id="menuButton"><i class="fas fa-bars"></i></button>
         </header>
     </div>
 
-    <div id="hamburgerMenu">
-        <span id="closeButton">×</span>
-        <form action="https://matomeyapoke.com/search" method="get">
-
-            <div class="header-rule-container">
-                <div class="header-rule-check">
-                    <input type='checkbox' name='rule[]' value='single' id='single_search'>
-                    <label for='single_search'>シングル</label>
-                </div>
-                <div class="header-rule-check">
-                    <input type='checkbox' name='rule[]' value='double' id='double_search'>
-                    <label for='double_search'>ダブル</label>
-                </div>
-            </div>
-
-            <div id="search-bar">
-                <input type="search" id="search-input" class="pokemon_input" name="poke1" autocomplete="off"
-                    placeholder="ポケモン名で検索">
-                <button type="submit" id="search-icon">
-                    <i class="fas fa-search fa-fw"></i>
-                </button>
-            </div>
-        </form>
-
-        <div class="menu-box">
-            <h3>シングル記事まとめ</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=13&rule=single">
-                        <span>SVシーズン13シングル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=12&rule=single">
-                        <span>SVシーズン12シングル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=11&rule=single">
-                        <span>SVシーズン11シングル上位記事</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>ダブル記事まとめ</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=13&rule=double">
-                        <span>SVシーズン13ダブル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=12&rule=double">
-                        <span>SVシーズン12ダブル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=11&rule=double">
-                        <span>SVシーズン11ダブル上位記事</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>構築投稿フォーム</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://pokemon-3lix.onrender.com">
-                        <span>ランクバトルの構築はこちら</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://other-mml2.onrender.com">
-                        <span>その他の構築はこちら</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>その他</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/news">
-                        <span>更新情報・過去のまとめ</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/inquiry">
-                        <span>問い合わせ</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <div class="content">
-        <div>ここでは<span class="red-bottom">最終順位が確定</span>したランクバトルの構築を投稿できます。シーズン途中の構築やランクバトル以外の構築は<a class="blue"
-                href="https://other-mml2.onrender.com/">その他のフォーム</a>から投稿してください。</div>
-        <div>レンタル画像からポケモン名などを自動で入力できます。</div>
+        <div>管理者用の投稿フォームです。入力した内容はそのままサイトに反映されるため慎重に入力してください。</div>
 
         <div>
             <form method="post" enctype="multipart/form-data" id="upload-form">
@@ -150,45 +43,60 @@
             </form>
         </div>
 
-        <form id="party_form" action="https://matomeyapoke.com/save_to_database" method="post">
-
-            <input type="text" id="approval" name="approval" style="display: none;" value="false">
-
+        <form id="party_form" action="https://matomeyapoke.com/php/admin/save_by_admin" method="post">
             <div>
-                <span class="required">*は必須項目です。</span>
-            </div>
-
-            <div>
-                <label for="rule">ルール<span class="required">*</span></label>
+                <label for="rule">ルール</label>
                 <select name="rule" id="rule">
                     <option value="">-----</option>
-                    <option value="single">シングル</option>
-                    <option value="double">ダブル</option>
                 </select>
             </div>
 
             <div>
-                <label for="season">シーズン<span class="required">*</span></label>
+                <label for="season">シーズン</label>
                 <select name="season" id="season">
                     <option value="">-----</option>
-                    <script src="{{ url_for('static', filename='js/season.js') }}"></script>
                 </select>
             </div>
 
             <div>
-                <label for="url">記事URL<span class="required">*</span></label>
+                <label for="regulation">レギュレーション</label>
+                <select name="regulation" id="regulation">
+                    <option value="">-----</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="event">公式大会など</label>
+                <select name="event" id="event">
+                    <option value="">-----</option>
+                    <option value="pjcs2024_1">第1回PJCS2024予選</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="ranking">最終順位</label><br>
+                <input type="search" id="ranking" name="rank" autocomplete="off">
+                <label for="ranking">位</label>
+            </div>
+
+            <div>
+                <label for="url">記事URL</label>
                 <input type="search" id="url" name="url" autocomplete="off">
             </div>
 
-            <div>
-                <label for="name">制作者名<span class="required">*</span><span id="name_x"></span></label>
-                <input type="search" id="name" name="name" autocomplete="off">
+            <div class="generate-container">
+                <button id="generateButton">URLからタイトル生成</button>
+                <button id="formatButton">タイトルフォーマット生成</button>
             </div>
 
             <div>
-                <label for="ranking">最終順位<span class="required">*</span></label><br>
-                <input type="search" id="ranking" name="rank" autocomplete="off">
-                <label for="ranking">位</label>
+                <label for="title">タイトル</label>
+                <textarea id="title" name="title" autocomplete="off"></textarea>
+            </div>
+
+            <div>
+                <label for="name">制作者名</label>
+                <input type="search" id="name" name="name" autocomplete="off">
             </div>
 
             <div>
@@ -202,63 +110,113 @@
                     onfocus="showPokemonSuggestions('pokemon1')" onblur="myBlurFunction('pokemon1')">
                 <div id="pokemon1suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item1" name="item1" autocomplete="off"
-                    placeholder="もちもの" value="{{ closest_words[1] }}" oninput="changeColor('item1')">
+                    placeholder="もちもの" value="{{ closest_words[6] }}" oninput="changeColor('item1')">
                 <input type="search" class="teras_input tera_input" id="tera1" name="tera1" autocomplete="off"
                     placeholder="テラスタル" value="{{ message1 }}">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move11' class='moves_admin1 move_input' name='move11' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[12] }}'>
+                <input type='search' id='move12' class='moves_admin2 move_input' name='move12' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[13] }}'>
+                <input type='search' id='move13' class='moves_admin3 move_input' name='move13' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[14] }}'>
+                <input type='search' id='move14' class='moves_admin4 move_input' name='move14' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[15] }}'>
             </div>
 
             <label for="pokemon2">ポケモン２</label>
             <div class="input-group">
                 <input type="search" class="poke_input pokemon_input" id="pokemon2" name="pokemon2" autocomplete="off"
-                    value="{{ closest_words[2] }}" oninput="changeColor('pokemon2')"
+                    value="{{ closest_words[1] }}" oninput="changeColor('pokemon2')"
                     onfocus="showPokemonSuggestions('pokemon2')" onblur="myBlurFunction('pokemon2')">
                 <div id="pokemon2suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item2" name="item2" autocomplete="off"
-                    value="{{ closest_words[3] }}" oninput="changeColor('item2')">
+                    value="{{ closest_words[7] }}" oninput="changeColor('item2')">
                 <input type="search" class="teras_input tera_input" id="tera2" name="tera2" autocomplete="off"
                     value="{{ message2 }}">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move21' class='moves_admin1 move_input' name='move21' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[16] }}'>
+                <input type='search' id='move22' class='moves_admin2 move_input' name='move22' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[17] }}'>
+                <input type='search' id='move23' class='moves_admin3 move_input' name='move23' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[18] }}'>
+                <input type='search' id='move24' class='moves_admin4 move_input' name='move24' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[19] }}'>
             </div>
 
             <label for="pokemon3">ポケモン３</label>
             <div class="input-group">
                 <input type="search" class="poke_input pokemon_input" id="pokemon3" name="pokemon3" autocomplete="off"
-                    value="{{ closest_words[4] }}" oninput="changeColor('pokemon3')"
+                    value="{{ closest_words[2] }}" oninput="changeColor('pokemon3')"
                     onfocus="showPokemonSuggestions('pokemon3')" onblur="myBlurFunction('pokemon3')">
                 <div id="pokemon3suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item3" name="item3" autocomplete="off"
-                    value="{{ closest_words[5] }}" oninput="changeColor('item3')">
+                    value="{{ closest_words[8] }}" oninput="changeColor('item3')">
                 <input type="search" class="teras_input tera_input" id="tera3" name="tera3" autocomplete="off"
                     value="{{ message3 }}">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move31' class='moves_admin1 move_input' name='move31' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[20] }}'>
+                <input type='search' id='move32' class='moves_admin2 move_input' name='move32' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[21] }}'>
+                <input type='search' id='move33' class='moves_admin3 move_input' name='move33' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[22] }}'>
+                <input type='search' id='move34' class='moves_admin4 move_input' name='move34' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[23] }}'>
             </div>
 
             <label for="pokemon4">ポケモン４</label>
             <div class="input-group">
                 <input type="search" class="poke_input pokemon_input" id="pokemon4" name="pokemon4" autocomplete="off"
-                    value="{{ closest_words[6] }}" oninput="changeColor('pokemon4')"
+                    value="{{ closest_words[3] }}" oninput="changeColor('pokemon4')"
                     onfocus="showPokemonSuggestions('pokemon4')" onblur="myBlurFunction('pokemon4')">
                 <div id="pokemon4suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item4" name="item4" autocomplete="off"
-                    value="{{ closest_words[7] }}" oninput="changeColor('item4')">
+                    value="{{ closest_words[9] }}" oninput="changeColor('item4')">
                 <input type="search" class="teras_input tera_input" id="tera4" name="tera4" autocomplete="off"
                     value="{{ message4 }}">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move41' class='moves_admin1 move_input' name='move41' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[24] }}'>
+                <input type='search' id='move42' class='moves_admin2 move_input' name='move42' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[25] }}'>
+                <input type='search' id='move43' class='moves_admin3 move_input' name='move43' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[26] }}'>
+                <input type='search' id='move44' class='moves_admin4 move_input' name='move44' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[27] }}'>
             </div>
 
             <label for="pokemon5">ポケモン５</label>
             <div class="input-group">
                 <input type="search" class="poke_input pokemon_input" id="pokemon5" name="pokemon5" autocomplete="off"
-                    value="{{ closest_words[8] }}" oninput="changeColor('pokemon5')"
+                    value="{{ closest_words[4] }}" oninput="changeColor('pokemon5')"
                     onfocus="showPokemonSuggestions('pokemon5')" onblur="myBlurFunction('pokemon5')">
                 <div id="pokemon5suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item5" name="item5" autocomplete="off"
-                    value="{{ closest_words[9] }}" oninput="changeColor('item5')">
+                    value="{{ closest_words[10] }}" oninput="changeColor('item5')">
                 <input type="search" class="teras_input tera_input" class="teras_input tera_input" id="tera5"
                     name="tera5" autocomplete="off" value="{{ message5 }}">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move51' class='moves_admin1 move_input' name='move51' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[28] }}'>
+                <input type='search' id='move52' class='moves_admin2 move_input' name='move52' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[29] }}'>
+                <input type='search' id='move53' class='moves_admin3 move_input' name='move53' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[30] }}'>
+                <input type='search' id='move54' class='moves_admin4 move_input' name='move54' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[31] }}'>
             </div>
 
             <label for="pokemon6">ポケモン６</label>
             <div class="input-group">
                 <input type="search" class="poke_input pokemon_input" id="pokemon6" name="pokemon6" autocomplete="off"
-                    value="{{ closest_words[10] }}" oninput="changeColor('pokemon6')"
+                    value="{{ closest_words[5] }}" oninput="changeColor('pokemon6')"
                     onfocus="showPokemonSuggestions('pokemon6')" onblur="myBlurFunction('pokemon6')">
                 <div id="pokemon6suggestions" class="suggestions" style="display:none;"></div>
                 <input type="search" class="tool_input item_input" id="item6" name="item6" autocomplete="off"
@@ -266,16 +224,22 @@
                 <input type="search" class="teras_input tera_input" id="tera6" name="tera6" autocomplete="off"
                     value="{{ message6 }}">
             </div>
-
-            <input type="text" id="img_src" name="img_src" style="display: none;"
-                value="data:image/jpeg;base64,{{ img_base64 }}">
+            <div class='moves-group'>
+                <input type='search' id='move61' class='moves_admin1 move_input' name='move61' autocomplete='off'
+                    placeholder='わざ1' value='{{ closest_words[32] }}'>
+                <input type='search' id='move62' class='moves_admin2 move_input' name='move62' autocomplete='off'
+                    placeholder='わざ2' value='{{ closest_words[33] }}'>
+                <input type='search' id='move63' class='moves_admin3 move_input' name='move63' autocomplete='off'
+                    placeholder='わざ3' value='{{ closest_words[34] }}'>
+                <input type='search' id='move64' class='moves_admin4 move_input' name='move64' autocomplete='off'
+                    placeholder='わざ4' value='{{ closest_words[35] }}'>
+            </div>
 
             <input type="submit" id="post" value="構築を投稿する">
 
         </form>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/form_change.js') }}"></script>
 </body>
 
 </html>

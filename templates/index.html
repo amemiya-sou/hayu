@@ -16,6 +16,7 @@
     <script src="{{ url_for('static', filename='js/autocomplete_poke.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_item.js') }}"></script>
     <script src="{{ url_for('static', filename='js/autocomplete_tera.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/autocomplete_move.js') }}"></script>
 </head>
 
 <body>
@@ -24,119 +25,17 @@
         xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
-    <div class="overlay"></div>
     <div id="top">
         <header>
-            <a href="https://matomeyapoke.com/">
-                <img src="{{ url_for('static', filename='img/flat.png') }}" id="header-img">
+            <a href="https://matomeyapoke.com/php/admin/admin_page">
+                <img src="{{ url_for('static', filename='img/管理用ページ。.png') }}" id="header-img">
             </a>
             <button id="menuButton"><i class="fas fa-bars"></i></button>
         </header>
     </div>
 
-    <div id="hamburgerMenu">
-        <span id="closeButton">×</span>
-        <form action="https://matomeyapoke.com/search" method="get">
-
-            <div class="header-rule-container">
-                <div class="header-rule-check">
-                    <input type='checkbox' name='rule[]' value='single' id='single_search'>
-                    <label for='single_search'>シングル</label>
-                </div>
-                <div class="header-rule-check">
-                    <input type='checkbox' name='rule[]' value='double' id='double_search'>
-                    <label for='double_search'>ダブル</label>
-                </div>
-            </div>
-
-            <div id="search-bar">
-                <input type="search" id="search-input" class="pokemon_input" name="poke1" autocomplete="off"
-                    placeholder="ポケモン名で検索">
-                <button type="submit" id="search-icon">
-                    <i class="fas fa-search fa-fw"></i>
-                </button>
-            </div>
-        </form>
-
-        <div class="menu-box">
-            <h3>シングル記事まとめ</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=14&rule=single">
-                        <span>SVシーズン14シングル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=13&rule=single">
-                        <span>SVシーズン13シングル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=12&rule=single">
-                        <span>SVシーズン12シングル上位記事</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>ダブル記事まとめ</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=14&rule=double">
-                        <span>SVシーズン14ダブル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=13&rule=double">
-                        <span>SVシーズン13ダブル上位記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/season?season=12&rule=double">
-                        <span>SVシーズン12ダブル上位記事</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>構築投稿フォーム</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://pokemon-3lix.onrender.com">
-                        <span>ランクバトルの構築はこちら</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://other-mml2.onrender.com">
-                        <span>その他の構築はこちら</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-box">
-            <h3>その他</h3>
-            <ul class="menu-links">
-                <li>
-                    <a href="https://matomeyapoke.com/news">
-                        <span>更新情報・過去のまとめ</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://matomeyapoke.com/inquiry">
-                        <span>問い合わせ</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <div class="content">
-        <div>ここでは<span class="red-bottom">最終順位が確定</span>したランクバトルの構築を投稿できます。シーズン途中の構築やランクバトル以外の構築は<a class="blue"
-                href="https://other-mml2.onrender.com/">その他のフォーム</a>から投稿してください。</div>
-        <div>レンタル画像からポケモン名などを自動で入力できます。</div>
+        <div>管理者用の投稿フォームです。入力した内容はそのままサイトに反映されるため慎重に入力してください。</div>
 
         <div>
             <form method="post" enctype="multipart/form-data" id="upload-form">
@@ -144,47 +43,61 @@
             </form>
         </div>
 
-        <form id="party_form" action="https://matomeyapoke.com/save_to_database" method="post">
-
-            <input type="text" id="approval" name="approval" style="display: none;" value="false">
-
+        <form id="party_form" action="https://matomeyapoke.com/php/admin/save_by_admin" method="post">
             <div>
-                <span class="required">*は必須項目です。</span>
-            </div>
-
-            <div>
-                <label for="rule">ルール<span class="required">*</span></label>
+                <label for="rule">ルール</label>
                 <select name="rule" id="rule">
                     <option value="">-----</option>
-                    <option value="single">シングル</option>
-                    <option value="double">ダブル</option>
                 </select>
             </div>
 
             <div>
-                <label for="season">シーズン<span class="required">*</span></label>
+                <label for="season">シーズン</label>
                 <select name="season" id="season">
                     <option value="">-----</option>
-                    <script src="{{ url_for('static', filename='js/season.js') }}"></script>
                 </select>
             </div>
 
             <div>
-                <label for="url">記事URL<span class="required">*</span></label>
-                <input type="search" id="url" name="url" autocomplete="off">
+                <label for="regulation">レギュレーション</label>
+                <select name="regulation" id="regulation">
+                    <option value="">-----</option>
+                </select>
             </div>
 
             <div>
-                <label for="name">制作者名<span class="required">*</span><span id="name_x"></span></label>
-                <input type="search" id="name" name="name" autocomplete="off">
+                <label for="event">公式大会など</label>
+                <select name="event" id="event">
+                    <option value="">-----</option>
+                    <option value="pjcs2024_1">第1回PJCS2024予選</option>
+                </select>
             </div>
 
             <div>
-                <label for="ranking">最終順位<span class="required">*</span></label><br>
+                <label for="ranking">最終順位</label><br>
                 <input type="search" id="ranking" name="rank" autocomplete="off">
                 <label for="ranking">位</label>
             </div>
 
+            <div>
+                <label for="url">記事URL</label>
+                <input type="search" id="url" name="url" autocomplete="off">
+            </div>
+
+            <div class="generate-container">
+                <button id="generateButton">URLからタイトル生成</button>
+                <button id="formatButton">タイトルフォーマット生成</button>
+            </div>
+
+            <div>
+                <label for="title">タイトル</label>
+                <textarea id="title" name="title" autocomplete="off"></textarea>
+            </div>
+
+            <div>
+                <label for="name">制作者名</label>
+                <input type="search" id="name" name="name" autocomplete="off">
+            </div>
 
             <label for="pokemon1">ポケモン１</label>
             <div class="input-group">
@@ -194,6 +107,16 @@
                     placeholder="もちもの">
                 <input type="search" id="tera1" class="teras_input tera_input" name="tera1" autocomplete="off"
                     placeholder="テラスタル">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move11' class='moves_admin1 move_input' name='move11' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move12' class='moves_admin2 move_input' name='move12' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move13' class='moves_admin3 move_input' name='move13' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move14' class='moves_admin4 move_input' name='move14' autocomplete='off'
+                    placeholder='わざ4'>
             </div>
 
             <label for="pokemon2">ポケモン２</label>
@@ -205,6 +128,16 @@
                 <input type="search" id="tera2" class="teras_input tera_input" name="tera2" autocomplete="off"
                     placeholder="テラスタル">
             </div>
+            <div class='moves-group'>
+                <input type='search' id='move21' class='moves_admin1 move_input' name='move21' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move22' class='moves_admin2 move_input' name='move22' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move23' class='moves_admin3 move_input' name='move23' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move24' class='moves_admin4 move_input' name='move24' autocomplete='off'
+                    placeholder='わざ4'>
+            </div>
 
             <label for="pokemon3">ポケモン３</label>
             <div class="input-group">
@@ -214,6 +147,16 @@
                     placeholder="もちもの">
                 <input type="search" id="tera3" class="teras_input tera_input" name="tera3" autocomplete="off"
                     placeholder="テラスタル">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move31' class='moves_admin1 move_input' name='move31' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move32' class='moves_admin2 move_input' name='move32' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move33' class='moves_admin3 move_input' name='move33' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move34' class='moves_admin4 move_input' name='move34' autocomplete='off'
+                    placeholder='わざ4'>
             </div>
 
             <label for="pokemon4">ポケモン４</label>
@@ -225,6 +168,16 @@
                 <input type="search" id="tera4" class="teras_input tera_input" name="tera4" autocomplete="off"
                     placeholder="テラスタル">
             </div>
+            <div class='moves-group'>
+                <input type='search' id='move41' class='moves_admin1 move_input' name='move41' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move42' class='moves_admin2 move_input' name='move42' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move43' class='moves_admin3 move_input' name='move43' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move44' class='moves_admin4 move_input' name='move44' autocomplete='off'
+                    placeholder='わざ4'>
+            </div>
 
             <label for="pokemon5">ポケモン５</label>
             <div class="input-group">
@@ -234,6 +187,16 @@
                     placeholder="もちもの">
                 <input type="search" id="tera5" class="teras_input tera_input" name="tera5" autocomplete="off"
                     placeholder="テラスタル">
+            </div>
+            <div class='moves-group'>
+                <input type='search' id='move51' class='moves_admin1 move_input' name='move51' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move52' class='moves_admin2 move_input' name='move52' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move53' class='moves_admin3 move_input' name='move53' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move54' class='moves_admin4 move_input' name='move54' autocomplete='off'
+                    placeholder='わざ4'>
             </div>
 
             <label for="pokemon6">ポケモン６</label>
@@ -245,7 +208,16 @@
                 <input type="search" id="tera6" class="teras_input tera_input" name="tera6" autocomplete="off"
                     placeholder="テラスタル">
             </div>
-
+            <div class='moves-group'>
+                <input type='search' id='move61' class='moves_admin1 move_input' name='move61' autocomplete='off'
+                    placeholder='わざ1'>
+                <input type='search' id='move62' class='moves_admin2 move_input' name='move62' autocomplete='off'
+                    placeholder='わざ2'>
+                <input type='search' id='move63' class='moves_admin3 move_input' name='move63' autocomplete='off'
+                    placeholder='わざ3'>
+                <input type='search' id='move64' class='moves_admin4 move_input' name='move64' autocomplete='off'
+                    placeholder='わざ4'>
+            </div>
 
             <input type="submit" id="post" value="構築を投稿する">
 

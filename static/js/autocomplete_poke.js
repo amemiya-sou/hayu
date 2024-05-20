@@ -180,8 +180,8 @@ $(function () {
         "イエッサン♂", "イエッサン♀", "モルペコ", "ゾウドウ",
         "ダイオウドウ", "ジュラルドン", "ドラメシヤ", "ドロンチ",
         "ドラパルト", "ザシアン", "ザマゼンタ",
-        "ムゲンダイナ", "ダクマ", "ウーラオス(いちげき)",
-        "ウーラオス(れんげき)", "レジエレキ", "レジドラゴ",
+        "ムゲンダイナ", "ダクマ", "ウーラオス(悪)",
+        "ウーラオス(水)", "レジエレキ", "レジドラゴ",
         "ブリザポス", "レイスポス", "バドレックス", "バドレックス(白)",
         "バドレックス(黒)", "アヤシシ", "バサギリ", "ガチグマ",
         "ガチグマ(アカツキ)", "イダイトウ♂", "イダイトウ♀", "オオニューラ",
@@ -228,16 +228,29 @@ $(function () {
         'ロトム(こおり)': 'フロストロトム',
         'ロトム(ひこう)': 'スピンロトム',
         'ロトム(くさ)': 'カットロトム',
+        'けトルネ': 'トルネロス(化身)',
+        'けボルト': 'ボルトロス(化身)',
+        'けランド': 'ランドロス(化身)',
+        'けラブト': 'ラブトロス(化身)',
+        'れトルネ': 'トルネロス(霊獣)',
+        'れボルト': 'ボルトロス(霊獣)',
+        'れランド': 'ランドロス(霊獣)',
+        'れラブト': 'ラブトロス(霊獣)',
         'キュレム(ホワイト)': 'ホワイトキュレム',
-        'キュレム(ブラック)': 'ブラックキュレム'
+        'キュレム(ブラック)': 'ブラックキュレム',
+        'いちげき': 'ウーラオス(悪)',
+        'れんげき': 'ウーラオス(水)',
+        'アカツキ': 'ガチグマ(アカツキ)',
+        'みどり': 'オーガポン(みどり)',
+        'いど': 'オーガポン(いど)',
+        'かまど': 'オーガポン(かまど)',
+        'いしずえ': 'オーガポン(いしずえ)'
     };
 
-    // ひらがなとカタカナを区別せずに前方一致検索するための関数
     function startsWithIgnoreCase(str, term) {
         return ignoreKana(str.toLowerCase()).indexOf(term) === 0;
     }
 
-    // ひらがなとカタカナを区別せずに検索するための関数
     function ignoreKana(str) {
         return str.replace(/[\u30a1-\u30f6]/g, function (match) {
             var chr = match.charCodeAt(0) - 0x60;
@@ -245,45 +258,49 @@ $(function () {
         });
     }
 
-    // Autocompleteを適用
     $(".pokemon_input").autocomplete({
         source: function (request, response) {
-            var term = ignoreKana(request.term.toLowerCase()); // 入力された値をひらがなとカタカナを区別せずに小文字に変換
+            var term = ignoreKana(request.term.toLowerCase());
 
-            // pokemonListとformから入力に前方一致する項目を検索
             var matchingItems = $.grep(pokemonList.concat(Object.keys(form)), function (item) {
                 return startsWithIgnoreCase(item, term);
             });
 
-            // formのエイリアスを元の名前に変換
             matchingItems = matchingItems.map(function (item) {
                 return form[item] || item;
             });
 
-            // 最大4つまでの候補を表示
             response(matchingItems.slice(0, 4));
         },
         position: { my: "left top-1", at: "left bottom", collision: "none" },
         delay: 100,
         autoFocus: true,
         select: function (event, ui) {
-            // 選択されたときの処理
             var currentInput = $(this);
-            var nextInput = currentInput.nextAll('input:first'); // 次のinput要素を取得
-
-            if (nextInput.length > 0) {
+            var itemInput = currentInput.nextAll('input').eq(0);
+            var teraInput = currentInput.nextAll('input').eq(1);
+            var nextInput = currentInput.closest('.input-group').nextAll('.moves-group').find('input[type="search"]').first();
+            var ogerpon = { 'オーガポン(かまど)': 'ほのお', 'オーガポン(いど)': 'みず', 'オーガポン(いしずえ)': 'いわ' };
+            var teraConfirm = { 'オーガポン(みどり)': 'くさ', 'テラパゴス': 'ステラ' };
+            var itemConfirm = {'ディアルガ(オリジン)':'だいこんごうだま','パルキア(オリジン)':'だいしらたま','ギラティナ(オリジン)':'だいはっきんだま'};
+            if (Object.keys(ogerpon).includes(ui.item.value)) {
+                itemInput.val(ui.item.value.replace(/^.{6}(.*).{1}$/, "$1") + 'のめん');
+                teraInput.val(ogerpon[ui.item.value]);
                 nextInput.focus();
+            } else if (Object.keys(teraConfirm).includes(ui.item.value)) {
+                teraInput.val(teraConfirm[ui.item.value]);
+                itemInput.focus();
+            } else if (Object.keys(itemConfirm).includes(ui.item.value)) {
+                itemInput.val(itemConfirm[ui.item.value]);
+                teraInput.focus();
+            } else {
+                itemInput.focus();
             }
         },
-        open: function(event, ui) {
-          var autocompleteWidget = $(this).autocomplete("widget");
-          var currentWidth = autocompleteWidget.width();
-          autocompleteWidget.width(currentWidth + 1);
+        open: function (event, ui) {
+            var autocompleteWidget = $(this).autocomplete("widget");
+            var currentWidth = autocompleteWidget.width();
+            autocompleteWidget.width(currentWidth + 1);
         }
     });
 });
-
-/*候補のフォントサイズを変更
-.ui-autocomplete {
-    font-size: 14px;
-}*/
